@@ -10,6 +10,7 @@ import UIKit
 class OffersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     
+    let refreshControl = UIRefreshControl()
     
     lazy var viewModel = {
         OffersViewModel()
@@ -19,6 +20,15 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         title = "Offers"
         initViewModel()
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        initViewModel()
+        refreshControl.endRefreshing()
     }
     
     func initViewModel() {
