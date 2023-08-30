@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2AC0893C2662624D2906FA1F /* Pods_VodaTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ACBBFB9168FA7F364D8A06A /* Pods_VodaTest.framework */; };
 		D72E0A522A979AF3004FC9B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72E0A512A979AF3004FC9B2 /* AppDelegate.swift */; };
 		D72E0A542A979AF3004FC9B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72E0A532A979AF3004FC9B2 /* SceneDelegate.swift */; };
 		D72E0A562A979AF3004FC9B2 /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72E0A552A979AF3004FC9B2 /* OffersViewController.swift */; };
@@ -22,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1BA94D0A683C5C181EDCAC94 /* Pods-VodaTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VodaTest.release.xcconfig"; path = "Target Support Files/Pods-VodaTest/Pods-VodaTest.release.xcconfig"; sourceTree = "<group>"; };
+		6ACBBFB9168FA7F364D8A06A /* Pods_VodaTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VodaTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C82980FA914078984430F789 /* Pods-VodaTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VodaTest.debug.xcconfig"; path = "Target Support Files/Pods-VodaTest/Pods-VodaTest.debug.xcconfig"; sourceTree = "<group>"; };
 		D72E0A4E2A979AF3004FC9B2 /* VodaTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VodaTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D72E0A512A979AF3004FC9B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D72E0A532A979AF3004FC9B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,17 +47,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AC0893C2662624D2906FA1F /* Pods_VodaTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		82C1A906A2622BAF7C977472 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C82980FA914078984430F789 /* Pods-VodaTest.debug.xcconfig */,
+				1BA94D0A683C5C181EDCAC94 /* Pods-VodaTest.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		AE9F5C7EBD09111BB68D7823 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6ACBBFB9168FA7F364D8A06A /* Pods_VodaTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D72E0A452A979AF3004FC9B2 = {
 			isa = PBXGroup;
 			children = (
 				D72E0A502A979AF3004FC9B2 /* VodaTest */,
 				D72E0A4F2A979AF3004FC9B2 /* Products */,
+				82C1A906A2622BAF7C977472 /* Pods */,
+				AE9F5C7EBD09111BB68D7823 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,6 +173,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D72E0A622A979AF5004FC9B2 /* Build configuration list for PBXNativeTarget "VodaTest" */;
 			buildPhases = (
+				734395CB9E302F201CFAACCC /* [CP] Check Pods Manifest.lock */,
 				D72E0A4A2A979AF3004FC9B2 /* Sources */,
 				D72E0A4B2A979AF3004FC9B2 /* Frameworks */,
 				D72E0A4C2A979AF3004FC9B2 /* Resources */,
@@ -206,6 +232,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		734395CB9E302F201CFAACCC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VodaTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D72E0A4A2A979AF3004FC9B2 /* Sources */ = {
@@ -362,6 +413,7 @@
 		};
 		D72E0A632A979AF5004FC9B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C82980FA914078984430F789 /* Pods-VodaTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -393,6 +445,7 @@
 		};
 		D72E0A642A979AF5004FC9B2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1BA94D0A683C5C181EDCAC94 /* Pods-VodaTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
