@@ -18,6 +18,7 @@
 		D79D2EF42A98E39E0023DC3D /* OfferDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79D2EF32A98E39E0023DC3D /* OfferDetailModel.swift */; };
 		D79D2EF72A98E4DC0023DC3D /* OffersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79D2EF62A98E4DC0023DC3D /* OffersViewModel.swift */; };
 		D7F290202A9E237600FB894C /* OfferDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F2901F2A9E237600FB894C /* OfferDetailViewController.swift */; };
+		D7F290222A9E5F2500FB894C /* OfferDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F290212A9E5F2500FB894C /* OfferDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		D79D2EF32A98E39E0023DC3D /* OfferDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailModel.swift; sourceTree = "<group>"; };
 		D79D2EF62A98E4DC0023DC3D /* OffersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewModel.swift; sourceTree = "<group>"; };
 		D7F2901F2A9E237600FB894C /* OfferDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailViewController.swift; sourceTree = "<group>"; };
+		D7F290212A9E5F2500FB894C /* OfferDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				D79D2EF62A98E4DC0023DC3D /* OffersViewModel.swift */,
+				D7F290212A9E5F2500FB894C /* OfferDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				D72E0A562A979AF3004FC9B2 /* OffersViewController.swift in Sources */,
 				D79D2EF22A98E0CD0023DC3D /* OfferModel.swift in Sources */,
 				D79D2EF72A98E4DC0023DC3D /* OffersViewModel.swift in Sources */,
+				D7F290222A9E5F2500FB894C /* OfferDetailViewModel.swift in Sources */,
 				D72E0A522A979AF3004FC9B2 /* AppDelegate.swift in Sources */,
 				D72E0A542A979AF3004FC9B2 /* SceneDelegate.swift in Sources */,
 				D7F290202A9E237600FB894C /* OfferDetailViewController.swift in Sources */,

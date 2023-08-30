@@ -32,27 +32,36 @@
                                                     <rect key="frame" x="16" y="8" width="361" height="104"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KwB-HH-lVG" userLabel="Title Label">
-                                                            <rect key="frame" x="16" y="16" width="329" height="20"/>
+                                                            <rect key="frame" x="16" y="16" width="281" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJX-Xw-m6H" userLabel="Description Label">
-                                                            <rect key="frame" x="16" y="52" width="329" height="36"/>
+                                                            <rect key="frame" x="16" y="52" width="281" height="36"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevronRight" translatesAutoresizingMaskIntoConstraints="NO" id="pPz-wz-lr5">
+                                                            <rect key="frame" x="313" y="36" width="32" height="32"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="32" id="Dto-vl-ynm"/>
+                                                                <constraint firstAttribute="width" secondItem="pPz-wz-lr5" secondAttribute="height" multiplier="1:1" id="U1h-PU-gp3"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="KwB-HH-lVG" secondAttribute="trailing" constant="16" id="0O0-Jj-0tf"/>
                                                         <constraint firstItem="KwB-HH-lVG" firstAttribute="leading" secondItem="jns-eM-bVY" secondAttribute="leading" constant="16" id="3V5-aK-MLg"/>
                                                         <constraint firstAttribute="bottom" secondItem="bJX-Xw-m6H" secondAttribute="bottom" constant="16" id="FdM-X3-UaN"/>
-                                                        <constraint firstAttribute="trailing" secondItem="bJX-Xw-m6H" secondAttribute="trailing" constant="16" id="KdV-Cy-MA9"/>
+                                                        <constraint firstItem="pPz-wz-lr5" firstAttribute="leading" secondItem="KwB-HH-lVG" secondAttribute="trailing" constant="16" id="GBY-C4-djL"/>
                                                         <constraint firstItem="KwB-HH-lVG" firstAttribute="top" secondItem="jns-eM-bVY" secondAttribute="top" constant="16" id="Qxt-YX-F2e"/>
                                                         <constraint firstItem="bJX-Xw-m6H" firstAttribute="top" secondItem="KwB-HH-lVG" secondAttribute="bottom" constant="16" id="RH2-Se-ME5"/>
+                                                        <constraint firstItem="pPz-wz-lr5" firstAttribute="centerY" secondItem="jns-eM-bVY" secondAttribute="centerY" id="g1a-l0-Vei"/>
                                                         <constraint firstItem="bJX-Xw-m6H" firstAttribute="leading" secondItem="jns-eM-bVY" secondAttribute="leading" constant="16" id="iQH-DH-Gq1"/>
+                                                        <constraint firstItem="pPz-wz-lr5" firstAttribute="leading" secondItem="bJX-Xw-m6H" secondAttribute="trailing" constant="16" id="uPe-DP-LMK"/>
+                                                        <constraint firstAttribute="trailing" secondItem="pPz-wz-lr5" secondAttribute="trailing" constant="16" id="woX-lf-FoZ"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -194,6 +203,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevronRight" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

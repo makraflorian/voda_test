@@ -13,14 +13,26 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var shortDescriptionLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    lazy var viewModel = {
+        OfferDetailViewModel()
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "AAAASD"
-//        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+300)
-        nameLabel.text = "asdasdsad"
-        shortDescriptionLabel.text = "asdasdsad"
-        descriptionLabel.text = "Lorem ipsum dolor sit amet"
+        initViewModel()
+        print(viewModel.offerId)
+        //        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+300)
+        title = viewModel.offer?.name
+        nameLabel.text = viewModel.offer?.name
+        shortDescriptionLabel.text = viewModel.offer?.shortDescription
+        descriptionLabel.text = viewModel.offer?.description
         // Do any additional setup after loading the view.
+    }
+    
+    func initViewModel() {
+        print("INIT brr")
+        viewModel.getOfferDetail()
     }
     
 

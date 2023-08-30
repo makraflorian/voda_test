@@ -56,14 +56,16 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if  segue.identifier == offerSegueIdentifier {
-            _ = segue.destination as! OfferDetailViewController
-//            let destination = segue.destination as! OfferDetailViewController
-            //            let offerIndex = tableView.indexPathForSelectedRow?.row
-            //        {
-            //            destination.id = viewModel.offers[indexPath.row].id
-            //        }
-        }
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem
+        //        if  segue.identifier == offerSegueIdentifier {
+        //            _ = segue.destination as! OfferDetailViewController
+        let destination = segue.destination as! OfferDetailViewController
+        let offerIndex = tableView.indexPathForSelectedRow?.row
+        destination.viewModel.offerId = viewModel.offers[offerIndex!].id
+        
+        //        }
     }
 }
 
