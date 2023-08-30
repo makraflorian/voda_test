@@ -7,5 +7,6 @@ target 'VodaTest' do
   use_frameworks!
 
   # Pods for VodaTest
+  pod 'Moya', '~> 15.0'
 
 end
