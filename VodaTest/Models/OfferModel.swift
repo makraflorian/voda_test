@@ -7,6 +7,16 @@
 
 import Foundation
 
+class OfferTypeModel: Codable {
+    var name: String = ""
+    var offers: [OfferModel] = []
+    
+    init(name: String, offers: [OfferModel]?) {
+        self.name = name
+        self.offers = offers ?? []
+    }
+}
+
 class OfferModel: Codable {
 
     var id: String = ""
@@ -15,7 +25,7 @@ class OfferModel: Codable {
     var name: String? = ""
     var shortDescription: String? = ""
     
-    init(id: String, rank: Int? = nil, isSpecial: Bool?, name: String?, shortDescription: String?) {
+    init(id: String, rank: Int?, isSpecial: Bool?, name: String?, shortDescription: String?) {
         self.id = id
         self.rank = rank
         self.isSpecial = isSpecial
