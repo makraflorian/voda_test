@@ -13,37 +13,36 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var shortDescriptionLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    lazy var viewModel = {
-        OfferDetailViewModel()
-    }()
+    let refreshControl = UIRefreshControl()
+    
+    var viewModel: OfferDetailViewModel = OfferDetailViewModel()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initViewModel()
-        print(viewModel.offerId)
-        //        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+300)
-        title = viewModel.offer?.name
-        nameLabel.text = viewModel.offer?.name
-        shortDescriptionLabel.text = viewModel.offer?.shortDescription
-        descriptionLabel.text = viewModel.offer?.description
-        // Do any additional setup after loading the view.
-    }
-    
-    func initViewModel() {
-        print("INIT brr")
+        scrollView.isScrollEnabled = true
+        scrollView.alwaysBounceVertical = true
+
+        viewModel.name.bind {
+            self.nameLabel.text = $0
+            self.title = $0
+        }
+        viewModel.shortDescription.bind {
+            self.shortDescriptionLabel.text = $0
+        }
+        viewModel.longDescription.bind {
+            self.descriptionLabel.text = $0
+        }
+
         viewModel.getOfferDetail()
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        scrollView.addSubview(refreshControl)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func refresh(_ sender: AnyObject) {
+        viewModel.getOfferDetail()
+        refreshControl.endRefreshing()
     }
-    */
-
 }

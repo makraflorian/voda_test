@@ -6,19 +6,55 @@
 //
 
 import Foundation
+import Moya
+
 ///nsobj?
 class OffersViewModel: NSObject {
     
-    var offers: [OfferModel] = []{
-        didSet {
-            reloadTableView?()
-        }
-    }
+    var offers: [OfferModel] = []
+
+    var offersGroups: Box<[OfferTypeModel]> = Box([])
     
-    var reloadTableView: (() -> Void)?
+    var provider: MoyaProvider<MyService>!
     
     func getOffers() {
-        // TODO
-        offers = [OfferModel(id: "1", isSpecial: false, name: "ASD", shortDescription: "asdasdasd"), OfferModel(id: "2", isSpecial: false, name: "ASD2", shortDescription: "asdasdasd")]
+
+        let provider = MoyaProvider<MyService>()
+        provider.request(.getOffers) { result in
+            switch result {
+            case let .success(moyaResponse):
+                do {
+//                    try moyaResponse.filterSuccessfulStatusCodes()
+                    let data = try moyaResponse.mapJSON()
+                    print(data)
+                    self.offers = try moyaResponse.map([OfferModel].self)
+                    self.offers = self.offers.filter { $0.rank != nil }
+
+                    var temp: [OfferTypeModel] = []
+                    
+                    var normal = self.offers.filter { !$0.isSpecial! }
+                    var special = self.offers.filter { $0.isSpecial! }
+                    if !special.isEmpty {
+                        special = special.sorted { $0.rank! > $1.rank! }
+                        temp.append(OfferTypeModel(name: "Special", offers: special))
+                    }
+                    if !normal.isEmpty {
+                        normal = normal.sorted { $0.rank! > $1.rank! }
+                        temp.append(OfferTypeModel(name: "Normal", offers: normal))
+                    }
+
+                    self.offersGroups.value = temp
+
+                }
+                catch {
+                    // show an error to your user
+                }
+
+                // do something in your app
+            case let .failure(error):
+                print("Shit \(error.errorDescription ?? "Shit")")
+                // TODO: handle the error == best. comment. ever.
+            }
+        }
     }
 }
