@@ -15,6 +15,8 @@
 		D72E0A5B2A979AF5004FC9B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D72E0A5A2A979AF5004FC9B2 /* Assets.xcassets */; };
 		D72E0A5E2A979AF5004FC9B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D72E0A5C2A979AF5004FC9B2 /* LaunchScreen.storyboard */; };
 		D72E0A732A97B0DF004FC9B2 /* OfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72E0A712A97B0DF004FC9B2 /* OfferCell.swift */; };
+		D73EE3B32AA5D5AC004B30B1 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73EE3B22AA5D5AC004B30B1 /* Box.swift */; };
+		D7974ABC2AA09B1F0033C61E /* OfferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7974ABB2AA09B1F0033C61E /* OfferService.swift */; };
 		D79D2EF22A98E0CD0023DC3D /* OfferModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79D2EF12A98E0CD0023DC3D /* OfferModel.swift */; };
 		D79D2EF42A98E39E0023DC3D /* OfferDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79D2EF32A98E39E0023DC3D /* OfferDetailModel.swift */; };
 		D79D2EF72A98E4DC0023DC3D /* OffersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79D2EF62A98E4DC0023DC3D /* OffersViewModel.swift */; };
@@ -35,6 +37,8 @@
 		D72E0A5D2A979AF5004FC9B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D72E0A5F2A979AF5004FC9B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D72E0A712A97B0DF004FC9B2 /* OfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCell.swift; sourceTree = "<group>"; };
+		D73EE3B22AA5D5AC004B30B1 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		D7974ABB2AA09B1F0033C61E /* OfferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferService.swift; sourceTree = "<group>"; };
 		D79D2EF12A98E0CD0023DC3D /* OfferModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferModel.swift; sourceTree = "<group>"; };
 		D79D2EF32A98E39E0023DC3D /* OfferDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailModel.swift; sourceTree = "<group>"; };
 		D79D2EF62A98E4DC0023DC3D /* OffersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewModel.swift; sourceTree = "<group>"; };
@@ -60,7 +64,6 @@
 				C82980FA914078984430F789 /* Pods-VodaTest.debug.xcconfig */,
 				1BA94D0A683C5C181EDCAC94 /* Pods-VodaTest.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -93,6 +96,7 @@
 		D72E0A502A979AF3004FC9B2 /* VodaTest */ = {
 			isa = PBXGroup;
 			children = (
+				D7974ABA2AA09ADB0033C61E /* Services */,
 				D72E0A652A97A945004FC9B2 /* Models */,
 				D72E0A682A97AD68004FC9B2 /* Screens */,
 				D72E0A512A979AF3004FC9B2 /* AppDelegate.swift */,
@@ -108,6 +112,7 @@
 		D72E0A652A97A945004FC9B2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D73EE3B22AA5D5AC004B30B1 /* Box.swift */,
 				D79D2EF12A98E0CD0023DC3D /* OfferModel.swift */,
 				D79D2EF32A98E39E0023DC3D /* OfferDetailModel.swift */,
 			);
@@ -147,6 +152,14 @@
 				D72E0A712A97B0DF004FC9B2 /* OfferCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		D7974ABA2AA09ADB0033C61E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D7974ABB2AA09B1F0033C61E /* OfferService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		D79D2EF52A98E4B00023DC3D /* ViewModels */ = {
@@ -283,11 +296,13 @@
 			files = (
 				D72E0A732A97B0DF004FC9B2 /* OfferCell.swift in Sources */,
 				D72E0A562A979AF3004FC9B2 /* OffersViewController.swift in Sources */,
+				D7974ABC2AA09B1F0033C61E /* OfferService.swift in Sources */,
 				D79D2EF22A98E0CD0023DC3D /* OfferModel.swift in Sources */,
 				D79D2EF72A98E4DC0023DC3D /* OffersViewModel.swift in Sources */,
 				D7F290222A9E5F2500FB894C /* OfferDetailViewModel.swift in Sources */,
 				D72E0A522A979AF3004FC9B2 /* AppDelegate.swift in Sources */,
 				D72E0A542A979AF3004FC9B2 /* SceneDelegate.swift in Sources */,
+				D73EE3B32AA5D5AC004B30B1 /* Box.swift in Sources */,
 				D7F290202A9E237600FB894C /* OfferDetailViewController.swift in Sources */,
 				D79D2EF42A98E39E0023DC3D /* OfferDetailModel.swift in Sources */,
 			);
