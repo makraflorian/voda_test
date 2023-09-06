@@ -33,6 +33,14 @@ class OfferDetailViewController: UIViewController {
         viewModel.longDescription.bind {
             self.descriptionLabel.text = $0
         }
+        
+        viewModel.showAlert.bind {
+            if $0 {
+                let alert = UIAlertController(title: "Error", message: "Unable to fetch data", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)                
+            }
+        }
 
         viewModel.getOfferDetail()
         

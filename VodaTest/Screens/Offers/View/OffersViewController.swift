@@ -17,10 +17,19 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Offers"
+        title = "My Offers"
+        tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0);
         
         viewModel.offersGroups.bind {_ in
             self.tableView.reloadData()
+        }
+        
+        viewModel.showAlert.bind {
+            if $0 {
+                let alert = UIAlertController(title: "Error", message: "Unable to fetch data", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
         
         viewModel.getOffers()
@@ -48,22 +57,16 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
         return viewModel.offersGroups.value[section].name
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
-            
-            let label = UILabel()
-            label.frame = CGRect.init(x: 16, y: 0, width: headerView.frame.width-16, height: headerView.frame.height-16)
-        label.text = viewModel.offersGroups.value[section].name
-            label.font = UIFont.boldSystemFont(ofSize: 24)
-            label.textColor = .black
-            
-            headerView.addSubview(label)
-            
-            return headerView
-        }
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.textColor = UIColor.black
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        header.textLabel?.text =  header.textLabel?.text?.capitalized
+        header.textLabel?.frame = header.bounds
+    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-            return 50
+            return 48
         }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
