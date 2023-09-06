@@ -16,17 +16,33 @@
 		D72E0A5E2A979AF5004FC9B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D72E0A5C2A979AF5004FC9B2 /* LaunchScreen.storyboard */; };
 		D72E0A732A97B0DF004FC9B2 /* OfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72E0A712A97B0DF004FC9B2 /* OfferCell.swift */; };
 		D73EE3B32AA5D5AC004B30B1 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73EE3B22AA5D5AC004B30B1 /* Box.swift */; };
+		D73EE3BB2AA614E3004B30B1 /* VodaOfferListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73EE3BA2AA614E3004B30B1 /* VodaOfferListTests.swift */; };
 		D7974ABC2AA09B1F0033C61E /* OfferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7974ABB2AA09B1F0033C61E /* OfferService.swift */; };
 		D79D2EF22A98E0CD0023DC3D /* OfferModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79D2EF12A98E0CD0023DC3D /* OfferModel.swift */; };
 		D79D2EF42A98E39E0023DC3D /* OfferDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79D2EF32A98E39E0023DC3D /* OfferDetailModel.swift */; };
 		D79D2EF72A98E4DC0023DC3D /* OffersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79D2EF62A98E4DC0023DC3D /* OffersViewModel.swift */; };
+		D7A4C0002AA7713D005C0642 /* VodaOfferDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A4BFFF2AA7713D005C0642 /* VodaOfferDetailTests.swift */; };
 		D7F290202A9E237600FB894C /* OfferDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F2901F2A9E237600FB894C /* OfferDetailViewController.swift */; };
 		D7F290222A9E5F2500FB894C /* OfferDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F290212A9E5F2500FB894C /* OfferDetailViewModel.swift */; };
+		DC777F4D2F6422CCE6A13ED9 /* Pods_VodaTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA0C1339EAEFC62E6EC1714 /* Pods_VodaTestTests.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D73EE3BC2AA614E3004B30B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D72E0A462A979AF3004FC9B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D72E0A4D2A979AF3004FC9B2;
+			remoteInfo = VodaTest;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		10A0A52BCFB694DA083C08AB /* Pods-VodaTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VodaTestTests.debug.xcconfig"; path = "Target Support Files/Pods-VodaTestTests/Pods-VodaTestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1BA94D0A683C5C181EDCAC94 /* Pods-VodaTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VodaTest.release.xcconfig"; path = "Target Support Files/Pods-VodaTest/Pods-VodaTest.release.xcconfig"; sourceTree = "<group>"; };
 		6ACBBFB9168FA7F364D8A06A /* Pods_VodaTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VodaTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADA0C1339EAEFC62E6EC1714 /* Pods_VodaTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VodaTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C55D6BEB538585C08C3795DA /* Pods-VodaTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VodaTestTests.release.xcconfig"; path = "Target Support Files/Pods-VodaTestTests/Pods-VodaTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		C82980FA914078984430F789 /* Pods-VodaTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VodaTest.debug.xcconfig"; path = "Target Support Files/Pods-VodaTest/Pods-VodaTest.debug.xcconfig"; sourceTree = "<group>"; };
 		D72E0A4E2A979AF3004FC9B2 /* VodaTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VodaTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D72E0A512A979AF3004FC9B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,10 +54,13 @@
 		D72E0A5F2A979AF5004FC9B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D72E0A712A97B0DF004FC9B2 /* OfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCell.swift; sourceTree = "<group>"; };
 		D73EE3B22AA5D5AC004B30B1 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		D73EE3B82AA614E3004B30B1 /* VodaTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VodaTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D73EE3BA2AA614E3004B30B1 /* VodaOfferListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VodaOfferListTests.swift; sourceTree = "<group>"; };
 		D7974ABB2AA09B1F0033C61E /* OfferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferService.swift; sourceTree = "<group>"; };
 		D79D2EF12A98E0CD0023DC3D /* OfferModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferModel.swift; sourceTree = "<group>"; };
 		D79D2EF32A98E39E0023DC3D /* OfferDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailModel.swift; sourceTree = "<group>"; };
 		D79D2EF62A98E4DC0023DC3D /* OffersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewModel.swift; sourceTree = "<group>"; };
+		D7A4BFFF2AA7713D005C0642 /* VodaOfferDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VodaOfferDetailTests.swift; sourceTree = "<group>"; };
 		D7F2901F2A9E237600FB894C /* OfferDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailViewController.swift; sourceTree = "<group>"; };
 		D7F290212A9E5F2500FB894C /* OfferDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,6 +74,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D73EE3B52AA614E3004B30B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC777F4D2F6422CCE6A13ED9 /* Pods_VodaTestTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -63,6 +90,8 @@
 			children = (
 				C82980FA914078984430F789 /* Pods-VodaTest.debug.xcconfig */,
 				1BA94D0A683C5C181EDCAC94 /* Pods-VodaTest.release.xcconfig */,
+				10A0A52BCFB694DA083C08AB /* Pods-VodaTestTests.debug.xcconfig */,
+				C55D6BEB538585C08C3795DA /* Pods-VodaTestTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -71,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				6ACBBFB9168FA7F364D8A06A /* Pods_VodaTest.framework */,
+				ADA0C1339EAEFC62E6EC1714 /* Pods_VodaTestTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -79,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				D72E0A502A979AF3004FC9B2 /* VodaTest */,
+				D73EE3B92AA614E3004B30B1 /* VodaTestTests */,
 				D72E0A4F2A979AF3004FC9B2 /* Products */,
 				82C1A906A2622BAF7C977472 /* Pods */,
 				AE9F5C7EBD09111BB68D7823 /* Frameworks */,
@@ -89,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				D72E0A4E2A979AF3004FC9B2 /* VodaTest.app */,
+				D73EE3B82AA614E3004B30B1 /* VodaTestTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,6 +186,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		D73EE3B92AA614E3004B30B1 /* VodaTestTests */ = {
+			isa = PBXGroup;
+			children = (
+				D73EE3BA2AA614E3004B30B1 /* VodaOfferListTests.swift */,
+				D7A4BFFF2AA7713D005C0642 /* VodaOfferDetailTests.swift */,
+			);
+			path = VodaTestTests;
+			sourceTree = "<group>";
+		};
 		D7974ABA2AA09ADB0033C61E /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +242,26 @@
 			productReference = D72E0A4E2A979AF3004FC9B2 /* VodaTest.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D73EE3B72AA614E3004B30B1 /* VodaTestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D73EE3BE2AA614E3004B30B1 /* Build configuration list for PBXNativeTarget "VodaTestTests" */;
+			buildPhases = (
+				4E340AA1942800022529739C /* [CP] Check Pods Manifest.lock */,
+				D73EE3B42AA614E3004B30B1 /* Sources */,
+				D73EE3B52AA614E3004B30B1 /* Frameworks */,
+				D73EE3B62AA614E3004B30B1 /* Resources */,
+				0AA05DC5F4D2F1808C76A2EC /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D73EE3BD2AA614E3004B30B1 /* PBXTargetDependency */,
+			);
+			name = VodaTestTests;
+			productName = VodaTestTests;
+			productReference = D73EE3B82AA614E3004B30B1 /* VodaTestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -213,6 +274,10 @@
 				TargetAttributes = {
 					D72E0A4D2A979AF3004FC9B2 = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					D73EE3B72AA614E3004B30B1 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = D72E0A4D2A979AF3004FC9B2;
 					};
 				};
 			};
@@ -230,6 +295,7 @@
 			projectRoot = "";
 			targets = (
 				D72E0A4D2A979AF3004FC9B2 /* VodaTest */,
+				D73EE3B72AA614E3004B30B1 /* VodaTestTests */,
 			);
 		};
 /* End PBXProject section */
@@ -245,9 +311,55 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D73EE3B62AA614E3004B30B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0AA05DC5F4D2F1808C76A2EC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VodaTestTests/Pods-VodaTestTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VodaTestTests/Pods-VodaTestTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VodaTestTests/Pods-VodaTestTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E340AA1942800022529739C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VodaTestTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		734395CB9E302F201CFAACCC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -308,7 +420,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D73EE3B42AA614E3004B30B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D73EE3BB2AA614E3004B30B1 /* VodaOfferListTests.swift in Sources */,
+				D7A4C0002AA7713D005C0642 /* VodaOfferDetailTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D73EE3BD2AA614E3004B30B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D72E0A4D2A979AF3004FC9B2 /* VodaTest */;
+			targetProxy = D73EE3BC2AA614E3004B30B1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D72E0A572A979AF3004FC9B2 /* Main.storyboard */ = {
@@ -508,6 +637,44 @@
 			};
 			name = Release;
 		};
+		D73EE3BF2AA614E3004B30B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10A0A52BCFB694DA083C08AB /* Pods-VodaTestTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.florian.VodaTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VodaTest.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VodaTest";
+			};
+			name = Debug;
+		};
+		D73EE3C02AA614E3004B30B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C55D6BEB538585C08C3795DA /* Pods-VodaTestTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.florian.VodaTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VodaTest.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VodaTest";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -525,6 +692,15 @@
 			buildConfigurations = (
 				D72E0A632A979AF5004FC9B2 /* Debug */,
 				D72E0A642A979AF5004FC9B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D73EE3BE2AA614E3004B30B1 /* Build configuration list for PBXNativeTarget "VodaTestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D73EE3BF2AA614E3004B30B1 /* Debug */,
+				D73EE3C02AA614E3004B30B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -24,13 +24,18 @@ class OfferDetailViewModel: NSObject {
     var shortDescription: Box<String> = Box("")
     var longDescription: Box<String> = Box("")
     
+    var showAlert: Box<Bool> = Box(false)
+    
     var offerId: String?
     
-    var provider: MoyaProvider<MyService>!
+    var provider: MoyaProvider<MyService>
+    
+    init(moyaProvider: MoyaProvider<MyService> = MoyaProvider<MyService>()) {
+        self.provider = moyaProvider
+    }
     
     func getOfferDetail() {
         
-        let provider = MoyaProvider<MyService>()
         provider.request(.getOfferDetails(id: offerId ?? "")) { result in
             switch result {
             case let .success(moyaResponse):
@@ -42,12 +47,14 @@ class OfferDetailViewModel: NSObject {
 
                 }
                 catch {
+                    self.showAlert.value = true
                     print(error.localizedDescription)
                 }
 
                 // do something in your app
             case let .failure(error):
-                print("Shit \(error.errorDescription ?? "Shit")")
+                print("Error: \(error.errorDescription ?? "Unknown error")")
+                self.showAlert.value = true
                 // TODO: handle the error == best. comment. ever.
             }
         }

@@ -10,3 +10,12 @@ target 'VodaTest' do
   pod 'Moya', '~> 15.0'
 
 end
+
+target 'VodaTestTests' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  
+  # Pods for VodaTest
+  pod 'Moya', '~> 15.0'
+  
+end

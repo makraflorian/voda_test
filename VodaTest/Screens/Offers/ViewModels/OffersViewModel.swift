@@ -15,12 +15,18 @@ class OffersViewModel: NSObject {
 
     var offersGroups: Box<[OfferTypeModel]> = Box([])
     
-    var provider: MoyaProvider<MyService>!
+    var showAlert: Box<Bool> = Box(false)
+    
+    var provider: MoyaProvider<MyService>
+    
+    init(moyaProvider: MoyaProvider<MyService> = MoyaProvider<MyService>()) {
+        self.provider = moyaProvider
+    }
     
     func getOffers() {
-
-        let provider = MoyaProvider<MyService>()
-        provider.request(.getOffers) { result in
+//        let provider = MoyaProvider<MyService>()
+//        let stubbingProvider = MoyaProvider<MyService>(stubClosure: MoyaProvider.immediatelyStub)
+        self.provider.request(.getOffers) { result in
             switch result {
             case let .success(moyaResponse):
                 do {
@@ -28,19 +34,19 @@ class OffersViewModel: NSObject {
                     let data = try moyaResponse.mapJSON()
                     print(data)
                     self.offers = try moyaResponse.map([OfferModel].self)
-                    self.offers = self.offers.filter { $0.rank != nil }
+                    self.offers = self.offers.filter { $0.id != nil && $0.rank != nil }
 
                     var temp: [OfferTypeModel] = []
                     
                     var normal = self.offers.filter { !$0.isSpecial! }
                     var special = self.offers.filter { $0.isSpecial! }
                     if !special.isEmpty {
-                        special = special.sorted { $0.rank! > $1.rank! }
-                        temp.append(OfferTypeModel(name: "Special", offers: special))
+                        special = special.sorted { $0.rank! < $1.rank! }
+                        temp.append(OfferTypeModel(name: "Special Offers", offers: special))
                     }
                     if !normal.isEmpty {
-                        normal = normal.sorted { $0.rank! > $1.rank! }
-                        temp.append(OfferTypeModel(name: "Normal", offers: normal))
+                        normal = normal.sorted { $0.rank! < $1.rank! }
+                        temp.append(OfferTypeModel(name: "Offers", offers: normal))
                     }
 
                     self.offersGroups.value = temp
@@ -48,11 +54,13 @@ class OffersViewModel: NSObject {
                 }
                 catch {
                     // show an error to your user
+                    self.showAlert.value = true
                 }
 
                 // do something in your app
             case let .failure(error):
-                print("Shit \(error.errorDescription ?? "Shit")")
+                print("Error: \(error.errorDescription ?? "Unknown error")")
+                self.showAlert.value = true
                 // TODO: handle the error == best. comment. ever.
             }
         }

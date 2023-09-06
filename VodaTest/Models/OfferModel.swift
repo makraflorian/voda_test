@@ -19,13 +19,13 @@ class OfferTypeModel: Codable {
 
 class OfferModel: Codable {
 
-    var id: String = ""
+    var id: String? = ""
     var rank: Int?
     var isSpecial: Bool? = false
     var name: String? = ""
     var shortDescription: String? = ""
     
-    init(id: String, rank: Int?, isSpecial: Bool?, name: String?, shortDescription: String?) {
+    init(id: String?, rank: Int?, isSpecial: Bool?, name: String?, shortDescription: String?) {
         self.id = id
         self.rank = rank
         self.isSpecial = isSpecial
