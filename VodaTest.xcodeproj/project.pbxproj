@@ -130,6 +130,7 @@
 			children = (
 				D7974ABA2AA09ADB0033C61E /* Services */,
 				D72E0A652A97A945004FC9B2 /* Models */,
+				D79D2EF52A98E4B00023DC3D /* ViewModels */,
 				D72E0A682A97AD68004FC9B2 /* Screens */,
 				D72E0A512A979AF3004FC9B2 /* AppDelegate.swift */,
 				D72E0A532A979AF3004FC9B2 /* SceneDelegate.swift */,
@@ -151,20 +152,11 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		D72E0A662A97A950004FC9B2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D79D2EFA2A98E8510023DC3D /* Detail */,
-				D72E0A6A2A97AF3B004FC9B2 /* Cell */,
-				D72E0A552A979AF3004FC9B2 /* OffersViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		D72E0A682A97AD68004FC9B2 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				D72E0A692A97AD8C004FC9B2 /* Offers */,
+				D79D2EFA2A98E8510023DC3D /* Detail */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -172,8 +164,8 @@
 		D72E0A692A97AD8C004FC9B2 /* Offers */ = {
 			isa = PBXGroup;
 			children = (
-				D79D2EF52A98E4B00023DC3D /* ViewModels */,
-				D72E0A662A97A950004FC9B2 /* View */,
+				D72E0A6A2A97AF3B004FC9B2 /* Cell */,
+				D72E0A552A979AF3004FC9B2 /* OffersViewController.swift */,
 			);
 			path = Offers;
 			sourceTree = "<group>";

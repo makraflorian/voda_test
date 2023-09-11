@@ -8,11 +8,10 @@
 import Foundation
 import Moya
 
-///nsobj?
-class OffersViewModel: NSObject {
+class OffersViewModel {
     
     var offers: [OfferModel] = []
-
+    
     var offersGroups: Box<[OfferTypeModel]> = Box([])
     
     var showAlert: Box<Bool> = Box(false)
@@ -24,18 +23,15 @@ class OffersViewModel: NSObject {
     }
     
     func getOffers() {
-//        let provider = MoyaProvider<MyService>()
-//        let stubbingProvider = MoyaProvider<MyService>(stubClosure: MoyaProvider.immediatelyStub)
         self.provider.request(.getOffers) { result in
             switch result {
             case let .success(moyaResponse):
                 do {
-//                    try moyaResponse.filterSuccessfulStatusCodes()
                     let data = try moyaResponse.mapJSON()
                     print(data)
                     self.offers = try moyaResponse.map([OfferModel].self)
                     self.offers = self.offers.filter { $0.id != nil && $0.rank != nil }
-
+                    
                     var temp: [OfferTypeModel] = []
                     
                     var normal = self.offers.filter { !$0.isSpecial! }
@@ -48,16 +44,15 @@ class OffersViewModel: NSObject {
                         normal = normal.sorted { $0.rank! < $1.rank! }
                         temp.append(OfferTypeModel(name: "Offers", offers: normal))
                     }
-
+                    
                     self.offersGroups.value = temp
-
+                    
                 }
                 catch {
                     // show an error to your user
                     self.showAlert.value = true
                 }
-
-                // do something in your app
+                
             case let .failure(error):
                 print("Error: \(error.errorDescription ?? "Unknown error")")
                 self.showAlert.value = true

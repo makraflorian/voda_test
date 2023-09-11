@@ -16,8 +16,7 @@ class OfferCell: UITableViewCell {
         super.awakeFromNib()
         self.selectedBackgroundView = UIView()
         roundedView.layer.cornerRadius = 10
-        //roundedView.layer.backgroundColor = UIColor.red.cgColor
-        // switch to bezier
+        
         roundedView.layer.shadowOffset = CGSizeMake(0, 4)
         roundedView.layer.shadowColor = UIColor.black.cgColor
         roundedView.layer.shadowOpacity = 0.25

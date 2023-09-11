@@ -22,7 +22,7 @@ class OfferDetailViewController: UIViewController {
         super.viewDidLoad()
         scrollView.isScrollEnabled = true
         scrollView.alwaysBounceVertical = true
-
+        
         viewModel.name.bind {
             self.nameLabel.text = $0
             self.title = $0
@@ -38,10 +38,10 @@ class OfferDetailViewController: UIViewController {
             if $0 {
                 let alert = UIAlertController(title: "Error", message: "Unable to fetch data", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)                
+                self.present(alert, animated: true, completion: nil)
             }
         }
-
+        
         viewModel.getOfferDetail()
         
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")

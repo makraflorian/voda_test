@@ -13,7 +13,10 @@ enum MyService {
     case getOfferDetails(id: String)
 }
 
-// MARK: - TargetType Protocol Implementation https://api.npoint.io/c1d049e131d742ff3cf2
+// MARK: - TargetType Protocol Implementation
+/// edit offers: https://www.npoint.io/docs/8539be17636e67811994
+/// edit detail: https://www.npoint.io/docs/c1d049e131d742ff3cf2
+
 extension MyService: TargetType {
     var baseURL: URL { URL(string: "https://api.npoint.io")! }
     var path: String {
@@ -44,7 +47,7 @@ extension MyService: TargetType {
             return "{\"id\":\"1\",\"name\":\"One time 1 GB\",\"description\":\"1GB 30 day once off prepaid data bundle. This option is ideal if you don’t exceed your bundle often and want to take advantage of the lower in-bundle rates. You can buy as many once-off bundles as you wish.\",\"shortDescription\":\"Let\'s choose between our data packages.\"}".utf8Encoded
         }
     }
-        
+    
     var headers: [String: String]? {
         return ["Content-type": "application/json"]
     }
@@ -54,6 +57,6 @@ private extension String {
     var urlEscaped: String {
         addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
     }
-
+    
     var utf8Encoded: Data { Data(self.utf8) }
 }

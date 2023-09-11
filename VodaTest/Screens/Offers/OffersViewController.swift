@@ -11,7 +11,6 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     let refreshControl = UIRefreshControl()
-    let offerSegueIdentifier = "ShowOfferSegue"
     
     var viewModel: OffersViewModel = OffersViewModel()
     
@@ -66,8 +65,8 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-            return 48
-        }
+        return 48
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OFFER_CELL_ID", for: indexPath) as! OfferCell
@@ -82,13 +81,9 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
         navigationItem.backBarButtonItem = backItem
-        //        if  segue.identifier == offerSegueIdentifier {
-        //            _ = segue.destination as! OfferDetailViewController
         let destination = segue.destination as! OfferDetailViewController
         let offerIndex = tableView.indexPathForSelectedRow?.row
         destination.viewModel.offerId = viewModel.offers[offerIndex!].id
-        
-        //        }
     }
 }
 

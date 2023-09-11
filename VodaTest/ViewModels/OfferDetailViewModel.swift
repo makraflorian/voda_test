@@ -8,7 +8,7 @@
 import Foundation
 import Moya
 
-class OfferDetailViewModel: NSObject {
+class OfferDetailViewModel {
     
     private var offer: OfferDetailModel? {
         didSet {
@@ -40,18 +40,16 @@ class OfferDetailViewModel: NSObject {
             switch result {
             case let .success(moyaResponse):
                 do {
-//                    try moyaResponse.filterSuccessfulStatusCodes()
                     let data = try moyaResponse.mapJSON()
                     print(data)
                     self.offer = try moyaResponse.map(OfferDetailModel.self)
-
+                    
                 }
                 catch {
                     self.showAlert.value = true
                     print(error.localizedDescription)
                 }
-
-                // do something in your app
+                
             case let .failure(error):
                 print("Error: \(error.errorDescription ?? "Unknown error")")
                 self.showAlert.value = true
