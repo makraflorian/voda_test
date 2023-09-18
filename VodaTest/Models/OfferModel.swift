@@ -8,7 +8,7 @@
 import Foundation
 
 class OfferTypeModel: Codable {
-    var name: String = ""
+    var name: String
     var offers: [OfferModel] = []
     
     init(name: String, offers: [OfferModel]?) {
@@ -19,11 +19,11 @@ class OfferTypeModel: Codable {
 
 class OfferModel: Codable {
 
-    var id: String? = ""
+    var id: String?
     var rank: Int?
-    var isSpecial: Bool? = false
-    var name: String? = ""
-    var shortDescription: String? = ""
+    var isSpecial: Bool?
+    var name: String?
+    var shortDescription: String?
     
     init(id: String?, rank: Int?, isSpecial: Bool?, name: String?, shortDescription: String?) {
         self.id = id

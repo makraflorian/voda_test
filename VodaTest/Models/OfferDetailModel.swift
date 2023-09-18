@@ -9,10 +9,10 @@ import Foundation
 
 class OfferDetailModel: Codable {
 
-    var id: String = ""
-    var name: String? = ""
-    var shortDescription: String? = ""
-    var description: String? = ""
+    var id: String
+    var name: String?
+    var shortDescription: String?
+    var description: String?
     
     init(id: String, name: String?, shortDescription: String?, description: String?) {
         self.id = id
