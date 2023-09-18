@@ -130,8 +130,8 @@
 			children = (
 				D7974ABA2AA09ADB0033C61E /* Services */,
 				D72E0A652A97A945004FC9B2 /* Models */,
-				D79D2EF52A98E4B00023DC3D /* ViewModels */,
-				D72E0A682A97AD68004FC9B2 /* Screens */,
+				D79D2EF52A98E4B00023DC3D /* View */,
+				D72E0A682A97AD68004FC9B2 /* UseCase */,
 				D72E0A512A979AF3004FC9B2 /* AppDelegate.swift */,
 				D72E0A532A979AF3004FC9B2 /* SceneDelegate.swift */,
 				D72E0A572A979AF3004FC9B2 /* Main.storyboard */,
@@ -152,30 +152,30 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		D72E0A682A97AD68004FC9B2 /* Screens */ = {
+		D72E0A682A97AD68004FC9B2 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
 				D72E0A692A97AD8C004FC9B2 /* Offers */,
-				D79D2EFA2A98E8510023DC3D /* Detail */,
+				D79D2EFA2A98E8510023DC3D /* OfferDetail */,
 			);
-			path = Screens;
+			path = UseCase;
 			sourceTree = "<group>";
 		};
 		D72E0A692A97AD8C004FC9B2 /* Offers */ = {
 			isa = PBXGroup;
 			children = (
-				D72E0A6A2A97AF3B004FC9B2 /* Cell */,
+				D79D2EF62A98E4DC0023DC3D /* OffersViewModel.swift */,
 				D72E0A552A979AF3004FC9B2 /* OffersViewController.swift */,
 			);
 			path = Offers;
 			sourceTree = "<group>";
 		};
-		D72E0A6A2A97AF3B004FC9B2 /* Cell */ = {
+		D72E0A6A2A97AF3B004FC9B2 /* OfferCell */ = {
 			isa = PBXGroup;
 			children = (
 				D72E0A712A97B0DF004FC9B2 /* OfferCell.swift */,
 			);
-			path = Cell;
+			path = OfferCell;
 			sourceTree = "<group>";
 		};
 		D73EE3B92AA614E3004B30B1 /* VodaTestTests */ = {
@@ -195,21 +195,21 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		D79D2EF52A98E4B00023DC3D /* ViewModels */ = {
+		D79D2EF52A98E4B00023DC3D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D79D2EF62A98E4DC0023DC3D /* OffersViewModel.swift */,
-				D7F290212A9E5F2500FB894C /* OfferDetailViewModel.swift */,
+				D72E0A6A2A97AF3B004FC9B2 /* OfferCell */,
 			);
-			path = ViewModels;
+			path = View;
 			sourceTree = "<group>";
 		};
-		D79D2EFA2A98E8510023DC3D /* Detail */ = {
+		D79D2EFA2A98E8510023DC3D /* OfferDetail */ = {
 			isa = PBXGroup;
 			children = (
+				D7F290212A9E5F2500FB894C /* OfferDetailViewModel.swift */,
 				D7F2901F2A9E237600FB894C /* OfferDetailViewController.swift */,
 			);
-			path = Detail;
+			path = OfferDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

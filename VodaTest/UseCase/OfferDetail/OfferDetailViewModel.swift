@@ -8,26 +8,34 @@
 import Foundation
 import Moya
 
-class OfferDetailViewModel {
+struct OfferDetailItemViewModel {
     
-    private var offer: OfferDetailModel? {
-        didSet {
-            id.value = offer?.id ?? ""
-            name.value = offer?.name ?? ""
-            shortDescription.value = offer?.shortDescription ?? ""
-            longDescription.value = offer?.description ?? ""
-        }
+    var id: String?
+    var name: String?
+    var shortDescription: String?
+    var description: String?
+
+    init(offer: OfferDetailModel) {
+        id = offer.id
+        name = offer.name
+        shortDescription = offer.shortDescription
+        description = offer.description
     }
     
-    var id: Box<String> = Box("")
-    var name: Box<String> = Box("")
-    var shortDescription: Box<String> = Box("")
-    var longDescription: Box<String> = Box("")
+    init() {
+        id = ""
+        name = ""
+        shortDescription = ""
+        description = ""
+    }
+}
+
+class OfferDetailViewModel {
     
+    var itemViewModel: Box<OfferDetailItemViewModel> = Box(OfferDetailItemViewModel())
     var showAlert: Box<Bool> = Box(false)
     
     var offerId: String?
-    
     var provider: MoyaProvider<MyService>
     
     init(moyaProvider: MoyaProvider<MyService> = MoyaProvider<MyService>()) {
@@ -42,7 +50,8 @@ class OfferDetailViewModel {
                 do {
                     let data = try moyaResponse.mapJSON()
                     print(data)
-                    self.offer = try moyaResponse.map(OfferDetailModel.self)
+                    let offerTemp = try moyaResponse.map(OfferDetailModel.self)
+                    self.itemViewModel.value = OfferDetailItemViewModel(offer: offerTemp)
                     
                 }
                 catch {

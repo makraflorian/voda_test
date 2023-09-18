@@ -10,12 +10,10 @@ import Moya
 
 class OffersViewModel {
     
-    var offers: [OfferModel] = []
-    
     var offersGroups: Box<[OfferTypeModel]> = Box([])
-    
     var showAlert: Box<Bool> = Box(false)
-    
+
+    var offers: [OfferModel] = []
     var provider: MoyaProvider<MyService>
     
     init(moyaProvider: MoyaProvider<MyService> = MoyaProvider<MyService>()) {

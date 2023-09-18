@@ -17,21 +17,13 @@ class OfferDetailViewController: UIViewController {
     
     var viewModel: OfferDetailViewModel = OfferDetailViewModel()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.isScrollEnabled = true
         scrollView.alwaysBounceVertical = true
         
-        viewModel.name.bind {
-            self.nameLabel.text = $0
-            self.title = $0
-        }
-        viewModel.shortDescription.bind {
-            self.shortDescriptionLabel.text = $0
-        }
-        viewModel.longDescription.bind {
-            self.descriptionLabel.text = $0
+        viewModel.itemViewModel.bind {
+            self.setupLabels(item: $0)
         }
         
         viewModel.showAlert.bind {
@@ -47,6 +39,13 @@ class OfferDetailViewController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         scrollView.addSubview(refreshControl)
+    }
+    
+    func setupLabels(item: OfferDetailItemViewModel) {
+        title = item.name
+        nameLabel.text = item.name
+        shortDescriptionLabel.text = item.shortDescription
+        descriptionLabel.text = item.description
     }
     
     @objc func refresh(_ sender: AnyObject) {
