@@ -1,4 +1,5 @@
 # Uncomment the next line to define a global platform for your project
+#source 'https://github.com/CocoaPods/Specs.git'
 # platform :ios, '9.0'
 platform :ios, '12.0'
 
@@ -8,6 +9,9 @@ target 'VodaTest' do
 
   # Pods for VodaTest
   pod 'Moya', '~> 15.0'
+  pod 'Swinject'
+  pod 'SwinjectStoryboard'
+  pod 'SwinjectAutoregistration'
 
 end
 
@@ -15,7 +19,7 @@ target 'VodaTestTests' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   
-  # Pods for VodaTest
+  # Pods for VodaTestTests
   pod 'Moya', '~> 15.0'
   
 end
