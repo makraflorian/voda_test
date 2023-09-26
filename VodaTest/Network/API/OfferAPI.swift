@@ -1,5 +1,5 @@
 //
-//  OfferService.swift
+//  OfferAPI.swift
 //  VodaTest
 //
 //  Created by Makra Flórián Róbert on 2023. 08. 31..
@@ -8,7 +8,7 @@
 import Foundation
 import Moya
 
-enum MyService {
+enum OfferAPI {
     case getOffers
     case getOfferDetails(id: String)
 }
@@ -17,7 +17,7 @@ enum MyService {
 /// edit offers: https://www.npoint.io/docs/8539be17636e67811994
 /// edit detail: https://www.npoint.io/docs/c1d049e131d742ff3cf2
 
-extension MyService: TargetType {
+extension OfferAPI: TargetType {
     var baseURL: URL { URL(string: "https://api.npoint.io")! }
     var path: String {
         switch self {

@@ -10,9 +10,9 @@ import Moya
 
 class NetworkManager {
     
-    var provider: MoyaProvider<MyService>
+    var provider: MoyaProvider<OfferAPI>
     
-    init(provider: MoyaProvider<MyService> = MoyaProvider<MyService>()) {
+    init(provider: MoyaProvider<OfferAPI> = MoyaProvider<OfferAPI>()) {
         self.provider = provider
     }
     

@@ -19,7 +19,7 @@
 		D73EE3BB2AA614E3004B30B1 /* VodaOfferListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73EE3BA2AA614E3004B30B1 /* VodaOfferListTests.swift */; };
 		D7635C7A2AC1BB06004C9D0F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7635C792AC1BB06004C9D0F /* NetworkManager.swift */; };
 		D7635C7C2AC1C4D2004C9D0F /* NetworkManagerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7635C7B2AC1C4D2004C9D0F /* NetworkManagerAssembly.swift */; };
-		D7974ABC2AA09B1F0033C61E /* OfferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7974ABB2AA09B1F0033C61E /* OfferService.swift */; };
+		D7974ABC2AA09B1F0033C61E /* OfferAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7974ABB2AA09B1F0033C61E /* OfferAPI.swift */; };
 		D79D2EF22A98E0CD0023DC3D /* OfferModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79D2EF12A98E0CD0023DC3D /* OfferModel.swift */; };
 		D79D2EF42A98E39E0023DC3D /* OfferDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79D2EF32A98E39E0023DC3D /* OfferDetailModel.swift */; };
 		D79D2EF72A98E4DC0023DC3D /* OffersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79D2EF62A98E4DC0023DC3D /* OffersViewModel.swift */; };
@@ -63,7 +63,7 @@
 		D73EE3BA2AA614E3004B30B1 /* VodaOfferListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VodaOfferListTests.swift; sourceTree = "<group>"; };
 		D7635C792AC1BB06004C9D0F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D7635C7B2AC1C4D2004C9D0F /* NetworkManagerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerAssembly.swift; sourceTree = "<group>"; };
-		D7974ABB2AA09B1F0033C61E /* OfferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferService.swift; sourceTree = "<group>"; };
+		D7974ABB2AA09B1F0033C61E /* OfferAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferAPI.swift; sourceTree = "<group>"; };
 		D79D2EF12A98E0CD0023DC3D /* OfferModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferModel.swift; sourceTree = "<group>"; };
 		D79D2EF32A98E39E0023DC3D /* OfferDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailModel.swift; sourceTree = "<group>"; };
 		D79D2EF62A98E4DC0023DC3D /* OffersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewModel.swift; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				D7D324C92ABC5E0D008BB3E9 /* Assembly */,
-				D7974ABA2AA09ADB0033C61E /* Services */,
+				D7974ABA2AA09ADB0033C61E /* Network */,
 				D72E0A652A97A945004FC9B2 /* Models */,
 				D79D2EF52A98E4B00023DC3D /* View */,
 				D72E0A682A97AD68004FC9B2 /* UseCase */,
@@ -199,13 +199,21 @@
 			path = VodaTestTests;
 			sourceTree = "<group>";
 		};
-		D7974ABA2AA09ADB0033C61E /* Services */ = {
+		D7635C7D2AC30A2E004C9D0F /* API */ = {
 			isa = PBXGroup;
 			children = (
-				D7974ABB2AA09B1F0033C61E /* OfferService.swift */,
+				D7974ABB2AA09B1F0033C61E /* OfferAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		D7974ABA2AA09ADB0033C61E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D7635C7D2AC30A2E004C9D0F /* API */,
 				D7635C792AC1BB06004C9D0F /* NetworkManager.swift */,
 			);
-			path = Services;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		D79D2EF52A98E4B00023DC3D /* View */ = {
@@ -424,7 +432,7 @@
 				D72E0A732A97B0DF004FC9B2 /* OfferCell.swift in Sources */,
 				D7D324CD2ABC64D8008BB3E9 /* OfferDetailAssembly.swift in Sources */,
 				D72E0A562A979AF3004FC9B2 /* OffersViewController.swift in Sources */,
-				D7974ABC2AA09B1F0033C61E /* OfferService.swift in Sources */,
+				D7974ABC2AA09B1F0033C61E /* OfferAPI.swift in Sources */,
 				D79D2EF22A98E0CD0023DC3D /* OfferModel.swift in Sources */,
 				D79D2EF72A98E4DC0023DC3D /* OffersViewModel.swift in Sources */,
 				D7F290222A9E5F2500FB894C /* OfferDetailViewModel.swift in Sources */,
