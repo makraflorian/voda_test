@@ -12,13 +12,12 @@ import Moya
 final class VodaOfferDetailTests: XCTestCase {
 
     var offerDetailViewModel: OfferDetailViewModel!
-    let stubbingProvider = MoyaProvider<MyService>(stubClosure: MoyaProvider.immediatelyStub)
+    let networkManager: NetworkManager = NetworkManager(provider: MoyaProvider<MyService>(stubClosure: MoyaProvider.immediatelyStub))
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         try super.setUpWithError()
-        offerDetailViewModel = OfferDetailViewModel(moyaProvider: stubbingProvider)
-        
+        offerDetailViewModel = OfferDetailViewModel(networkManager: networkManager)
     }
 
     override func tearDownWithError() throws {
@@ -29,8 +28,8 @@ final class VodaOfferDetailTests: XCTestCase {
 
     func testOfferDetailLoad() throws {
         offerDetailViewModel.getOfferDetail()
-        let offerId = offerDetailViewModel.id
-        XCTAssertFalse(offerId.value.isEmpty, "no valid offer")
+        let offerId = offerDetailViewModel.itemViewModel.value.id
+        XCTAssertFalse(offerId!.isEmpty, "no valid offer")
     }
 
 }
