@@ -12,18 +12,18 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
     
     let refreshControl = UIRefreshControl()
     
-    var viewModel: OffersViewModel = OffersViewModel()
+    var viewModel: OffersViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "My Offers"
         tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0);
         
-        viewModel.offersGroups.bind {_ in
+        viewModel?.offersGroups.bind {_ in
             self.tableView.reloadData()
         }
         
-        viewModel.showAlert.bind {
+        viewModel?.showAlert.bind {
             if $0 {
                 let alert = UIAlertController(title: "Error", message: "Unable to fetch data", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
@@ -31,7 +31,7 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
             }
         }
         
-        viewModel.getOffers()
+        viewModel?.getOffers()
         
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
@@ -39,21 +39,21 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     @objc func refresh(_ sender: AnyObject) {
-        viewModel.getOffers()
+        viewModel?.getOffers()
         refreshControl.endRefreshing()
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.offersGroups.value[section].offers.count
+        return viewModel?.offersGroups.value[section].offers.count ?? 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.offersGroups.value.count
+        return viewModel?.offersGroups.value.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel.offersGroups.value[section].name
+        return viewModel?.offersGroups.value[section].name
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -70,9 +70,9 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OFFER_CELL_ID", for: indexPath) as! OfferCell
-        let offer = viewModel.offersGroups.value[indexPath.section].offers[indexPath.row]
-        cell.titleLabel.text = offer.name
-        cell.descriptionLabel.text = offer.shortDescription
+        let offer = viewModel?.offersGroups.value[indexPath.section].offers[indexPath.row]
+        cell.titleLabel.text = offer?.name
+        cell.descriptionLabel.text = offer?.shortDescription
         
         return cell
     }
@@ -83,7 +83,7 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
         navigationItem.backBarButtonItem = backItem
         let destination = segue.destination as! OfferDetailViewController
         let offerIndex = tableView.indexPathForSelectedRow?.row
-        destination.viewModel.offerId = viewModel.offers[offerIndex!].id
+        destination.viewModel?.offerId = viewModel?.offers[offerIndex!].id
     }
 }
 

@@ -14,7 +14,7 @@ struct OfferDetailItemViewModel {
     var name: String?
     var shortDescription: String?
     var description: String?
-
+    
     init(offer: OfferDetailModel) {
         id = offer.id
         name = offer.name
@@ -36,33 +36,22 @@ class OfferDetailViewModel {
     var showAlert: Box<Bool> = Box(false)
     
     var offerId: String?
-    var provider: MoyaProvider<MyService>
+    var networkManager: NetworkManager
     
-    init(moyaProvider: MoyaProvider<MyService> = MoyaProvider<MyService>()) {
-        self.provider = moyaProvider
+    init(networkManager: NetworkManager) {
+        self.networkManager = networkManager
     }
     
     func getOfferDetail() {
-        
-        provider.request(.getOfferDetails(id: offerId ?? "")) { result in
+        networkManager.getOfferDetails(offerId: offerId ?? "") { result in
             switch result {
-            case let .success(moyaResponse):
-                do {
-                    let data = try moyaResponse.mapJSON()
-                    print(data)
-                    let offerTemp = try moyaResponse.map(OfferDetailModel.self)
-                    self.itemViewModel.value = OfferDetailItemViewModel(offer: offerTemp)
-                    
-                }
-                catch {
-                    self.showAlert.value = true
-                    print(error.localizedDescription)
-                }
+            case .success(let data):
+                self.itemViewModel.value = OfferDetailItemViewModel(offer: data)
                 
-            case let .failure(error):
-                print("Error: \(error.errorDescription ?? "Unknown error")")
+            case .failure(let error):
+                print("Error: \(error.localizedDescription )")
                 self.showAlert.value = true
-                // TODO: handle the error == best. comment. ever.
+                
             }
         }
     }

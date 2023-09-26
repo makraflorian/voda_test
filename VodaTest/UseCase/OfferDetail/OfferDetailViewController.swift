@@ -15,18 +15,18 @@ class OfferDetailViewController: UIViewController {
     
     let refreshControl = UIRefreshControl()
     
-    var viewModel: OfferDetailViewModel = OfferDetailViewModel()
+    var viewModel: OfferDetailViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.isScrollEnabled = true
         scrollView.alwaysBounceVertical = true
         
-        viewModel.itemViewModel.bind {
+        viewModel?.itemViewModel.bind {
             self.setupLabels(item: $0)
         }
         
-        viewModel.showAlert.bind {
+        viewModel?.showAlert.bind {
             if $0 {
                 let alert = UIAlertController(title: "Error", message: "Unable to fetch data", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
@@ -34,7 +34,7 @@ class OfferDetailViewController: UIViewController {
             }
         }
         
-        viewModel.getOfferDetail()
+        viewModel?.getOfferDetail()
         
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
@@ -49,7 +49,7 @@ class OfferDetailViewController: UIViewController {
     }
     
     @objc func refresh(_ sender: AnyObject) {
-        viewModel.getOfferDetail()
+        viewModel?.getOfferDetail()
         refreshControl.endRefreshing()
     }
 }

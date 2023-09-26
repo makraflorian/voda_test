@@ -6,16 +6,34 @@
 //
 
 import UIKit
+import Swinject
+import SwinjectStoryboard
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var container: Container = {
+        let container = Container()
+        return container
+    }()
+    
+    fileprivate let assemblies: [Assembly] = [OffersAssembly(),
+                                              OfferDetailAssembly(),
+                                              NetworkManagerAssembly()]
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UINavigationBar.appearance().backIndicatorImage = UIImage()
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage()
+        
+        // MARK: DI
+        Container.loggingFunction = nil
+        let assembler = Assembler(container: container)
+        assembler.apply(assemblies: assemblies)
+        SwinjectStoryboard.defaultContainer = container
+        
         return true
     }
 
