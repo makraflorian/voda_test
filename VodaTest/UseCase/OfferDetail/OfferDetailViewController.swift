@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class OfferDetailViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
@@ -14,25 +16,26 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     
     let refreshControl = UIRefreshControl()
+    let disposeBag = DisposeBag()
     
-    var viewModel: OfferDetailViewModel?
+    var viewModel: OfferDetailViewModelType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.isScrollEnabled = true
         scrollView.alwaysBounceVertical = true
         
-        viewModel?.itemViewModel.bind {
+        viewModel?.itemViewModel.subscribe {
             self.setupLabels(item: $0)
-        }
+        }.disposed(by: disposeBag)
         
-        viewModel?.showAlert.bind {
+        viewModel?.showAlert.subscribe {
             if $0 {
                 let alert = UIAlertController(title: "Error", message: "Unable to fetch data", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
-        }
+        }.disposed(by: disposeBag)
         
         viewModel?.getOfferDetail()
         

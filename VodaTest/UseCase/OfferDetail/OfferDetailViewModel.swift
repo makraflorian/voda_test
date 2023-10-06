@@ -7,6 +7,8 @@
 
 import Foundation
 import Moya
+import RxSwift
+import RxCocoa
 
 struct OfferDetailItemViewModel {
     
@@ -30,29 +32,39 @@ struct OfferDetailItemViewModel {
     }
 }
 
-class OfferDetailViewModel {
+protocol OfferDetailViewModelType {
+    var itemViewModel: BehaviorRelay<OfferDetailItemViewModel> { get }
+    var showAlert: BehaviorRelay<Bool> { get }
+//    var offerId: String? { get set }
     
-    var itemViewModel: Box<OfferDetailItemViewModel> = Box(OfferDetailItemViewModel())
-    var showAlert: Box<Bool> = Box(false)
+    func getOfferDetail()
+}
+
+class OfferDetailViewModel: OfferDetailViewModelType {
     
-    var offerId: String?
-    var networkManager: NetworkManager
     
-    init(networkManager: NetworkManager) {
-        self.networkManager = networkManager
+    var itemViewModel: BehaviorRelay<OfferDetailItemViewModel> = BehaviorRelay(value: OfferDetailItemViewModel())
+    var showAlert: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
+//    var offerId: String?
+    let disposeBag = DisposeBag()
+    var interactor: OfferInteractorType
+    
+    init(interactor: OfferInteractorType) {
+        self.interactor = interactor
     }
     
+    
     func getOfferDetail() {
-        networkManager.getOfferDetails(offerId: offerId ?? "") { result in
-            switch result {
+        interactor.getOfferDetails().subscribe { event in
+            switch event {
             case .success(let data):
-                self.itemViewModel.value = OfferDetailItemViewModel(offer: data)
-                
+                self.itemViewModel.accept(OfferDetailItemViewModel(offer: data))
             case .failure(let error):
                 print("Error: \(error.localizedDescription )")
-                self.showAlert.value = true
-                
+                self.showAlert.accept(true)
             }
-        }
+        }.disposed(by: disposeBag)
+        
     }
 }

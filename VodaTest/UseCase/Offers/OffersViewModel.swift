@@ -7,45 +7,39 @@
 
 import Foundation
 import Moya
+import RxSwift
+import RxCocoa
 
-class OffersViewModel {
+protocol OffersViewModelType {
+    var offersGroups: BehaviorRelay<[OfferTypeModel]> { get }
+    var showAlert: BehaviorRelay<Bool> { get }
     
-    var offersGroups: Box<[OfferTypeModel]> = Box([])
-    var showAlert: Box<Bool> = Box(false)
-    var networkManager: NetworkManager
+    func getOffers()
     
-    var offers: [OfferModel] = []
+}
+
+class OffersViewModel: OffersViewModelType {
     
-    init(networkManager: NetworkManager) {
-        self.networkManager = networkManager
+    var offersGroups: BehaviorRelay<[OfferTypeModel]> = BehaviorRelay<[OfferTypeModel]>(value: [])
+    var showAlert: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    
+    let disposeBag = DisposeBag()
+    var interactor: OfferInteractorType
+    
+    init(interactor: OfferInteractorType) {
+        self.interactor = interactor
     }
     
     func getOffers() {
-        networkManager.getOffers { result in
-            switch result {
+        
+        interactor.getOffers().subscribe { event in
+            switch event {
             case .success(let data):
-                self.offers = data.filter { $0.id != nil && $0.rank != nil }
-                
-                var temp: [OfferTypeModel] = []
-                
-                var normal = self.offers.filter { !$0.isSpecial! }
-                var special = self.offers.filter { $0.isSpecial! }
-                if !special.isEmpty {
-                    special = special.sorted { $0.rank! < $1.rank! }
-                    temp.append(OfferTypeModel(name: "Special Offers", offers: special))
-                }
-                if !normal.isEmpty {
-                    normal = normal.sorted { $0.rank! < $1.rank! }
-                    temp.append(OfferTypeModel(name: "Offers", offers: normal))
-                }
-                
-                self.offersGroups.value = temp
-                
+                self.offersGroups.accept(data)
             case .failure(let error):
                 print("Error: \(error.localizedDescription )")
-                self.showAlert.value = true
-                
+                self.showAlert.accept(true)
             }
-        }
+        }.disposed(by: disposeBag)
     }
 }

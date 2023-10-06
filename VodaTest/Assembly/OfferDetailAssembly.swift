@@ -12,9 +12,9 @@ import SwinjectAutoregistration
 
 internal class OfferDetailAssembly: Assembly {
     func assemble(container: Container) {
-        container.autoregister(OfferDetailViewModel.self, initializer: OfferDetailViewModel.init).inObjectScope(.container)
+        container.autoregister(OfferDetailViewModelType.self, initializer: OfferDetailViewModel.init).inObjectScope(.container)
         container.storyboardInitCompleted(OfferDetailViewController.self, initCompleted: { r, c in
-            c.viewModel = r.resolve(OfferDetailViewModel.self)!
+            c.viewModel = r.resolve(OfferDetailViewModelType.self)!
         })
     }
 }

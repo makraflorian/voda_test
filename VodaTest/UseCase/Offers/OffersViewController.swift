@@ -6,30 +6,33 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class OffersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     let refreshControl = UIRefreshControl()
+    let disposeBag = DisposeBag()
     
-    var viewModel: OffersViewModel?
+    var viewModel: OffersViewModelType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "My Offers"
         tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0);
         
-        viewModel?.offersGroups.bind {_ in
+        viewModel?.offersGroups.subscribe { _ in
             self.tableView.reloadData()
-        }
+        }.disposed(by: disposeBag)
         
-        viewModel?.showAlert.bind {
+        viewModel?.showAlert.subscribe {
             if $0 {
                 let alert = UIAlertController(title: "Error", message: "Unable to fetch data", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
-        }
+        }.disposed(by: disposeBag)
         
         viewModel?.getOffers()
         
@@ -81,9 +84,9 @@ class OffersViewController: UIViewController, UITableViewDataSource, UITableView
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
         navigationItem.backBarButtonItem = backItem
-        let destination = segue.destination as! OfferDetailViewController
-        let offerIndex = tableView.indexPathForSelectedRow?.row
-        destination.viewModel?.offerId = viewModel?.offers[offerIndex!].id
+        //        let destination = segue.destination as! OfferDetailViewController
+        //        let offerIndex = tableView.indexPathForSelectedRow?.row
+        //        destination.viewModel?.offerId = viewModel?.offers[offerIndex!].id
     }
 }
 
