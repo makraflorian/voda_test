@@ -6,58 +6,30 @@
 //
 
 import Foundation
+import RxSwift
 import Moya
 
-class NetworkManager {
+protocol NetworkManagerType {
+    
+    func handleRequests(api: OfferAPI) -> Single<Response>
+    func setProvider(provider: MoyaProvider<OfferAPI>)
+}
+
+class NetworkManager: NetworkManagerType {
     
     var provider: MoyaProvider<OfferAPI>
     
-    init(provider: MoyaProvider<OfferAPI> = MoyaProvider<OfferAPI>()) {
+    init() {
+        self.provider = MoyaProvider<OfferAPI>()
+    }
+    
+    func setProvider(provider: MoyaProvider<OfferAPI>) {
         self.provider = provider
     }
-    
-    func getOffers(completion: @escaping (Result<[OfferModel], Error>)->()) {
-        provider.request(.getOffers) { result in
-            switch result {
-            case let .success(moyaResponse):
-                do {
-                    let data = try moyaResponse.map([OfferModel].self)
-                    print(data)
-                    completion(.success(data))
-                }
-                catch {
-                    // show an error to your user
-                    completion(.failure(error))
-                }
-                
-            case let .failure(error):
-                print("Error: \(error.errorDescription ?? "Unknown error")")
-                completion(.failure(error))
-                // TODO: handle the error == best. comment. ever.
-            }
-        }
-    }
-    
-    func getOfferDetails(offerId: String, completion: @escaping (Result<OfferDetailModel, Error>)->()) {
-        provider.request(.getOfferDetails(id: offerId)) { result in
-            switch result {
-            case let .success(moyaResponse):
-                do {
-                    let data = try moyaResponse.map(OfferDetailModel.self)
-                    print(data)
-                    completion(.success(data))
-                }
-                catch {
-                    // show an error to your user
-                    completion(.failure(error))
-                }
-                
-            case let .failure(error):
-                print("Error: \(error.errorDescription ?? "Unknown error")")
-                completion(.failure(error))
-                // TODO: handle the error == best. comment. ever.
-            }
-        }
+
+    func handleRequests(api: OfferAPI) -> Single<Response> {
+        return provider.rx.request(api)
+            .filterSuccessfulStatusAndRedirectCodes()
     }
     
 }

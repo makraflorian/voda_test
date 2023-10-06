@@ -4,6 +4,19 @@ PODS:
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
+  - Moya/RxSwift (15.0.0):
+    - Moya/Core
+    - RxSwift (~> 6.0)
+  - RxBlocking (6.6.0):
+    - RxSwift (= 6.6.0)
+  - RxCocoa (6.6.0):
+    - RxRelay (= 6.6.0)
+    - RxSwift (= 6.6.0)
+  - RxRelay (6.6.0):
+    - RxSwift (= 6.6.0)
+  - RxSwift (6.6.0)
+  - RxTest (6.6.0):
+    - RxSwift (= 6.6.0)
   - Swinject (2.7.1)
   - SwinjectAutoregistration (2.8.1):
     - Swinject (= 2.7.1)
@@ -12,6 +25,11 @@ PODS:
 
 DEPENDENCIES:
   - Moya (~> 15.0)
+  - Moya/RxSwift (~> 15.0)
+  - RxBlocking (= 6.6.0)
+  - RxCocoa (= 6.6.0)
+  - RxSwift (= 6.6.0)
+  - RxTest (= 6.6.0)
   - Swinject
   - SwinjectAutoregistration
   - SwinjectStoryboard
@@ -20,6 +38,11 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Moya
+    - RxBlocking
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - RxTest
     - Swinject
     - SwinjectAutoregistration
     - SwinjectStoryboard
@@ -27,10 +50,15 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  RxBlocking: fbd1f8501443024f686e556f36dac79b0d5f4d7c
+  RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
+  RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
+  RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
+  RxTest: a23f26bb53a5e146a0a69db4f0fa0b69001ce7f4
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
   SwinjectAutoregistration: e83e362da3ca9c64a68290e89efbc40e378dff12
   SwinjectStoryboard: 240ce371396da09a4c43c72ee5c148108500e184
 
-PODFILE CHECKSUM: 377aec9bcce8713677aa76d8c51f3a8c9058d10d
+PODFILE CHECKSUM: a67beaa00c277abe36a97fca8aed25233044c540
 
 COCOAPODS: 1.11.3

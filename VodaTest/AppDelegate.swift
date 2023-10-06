@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     fileprivate let assemblies: [Assembly] = [OffersAssembly(),
                                               OfferDetailAssembly(),
-                                              NetworkManagerAssembly()]
+                                              CommonAssembly()]
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

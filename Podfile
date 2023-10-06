@@ -9,9 +9,12 @@ target 'VodaTest' do
 
   # Pods for VodaTest
   pod 'Moya', '~> 15.0'
+  pod 'Moya/RxSwift', '~> 15.0'
   pod 'Swinject'
   pod 'SwinjectStoryboard'
   pod 'SwinjectAutoregistration'
+  pod 'RxSwift', '6.6.0'
+  pod 'RxCocoa', '6.6.0'
 
 end
 
@@ -21,6 +24,11 @@ target 'VodaTestTests' do
   
   # Pods for VodaTestTests
   pod 'Moya', '~> 15.0'
+  pod 'Moya/RxSwift', '~> 15.0'
+  pod 'RxBlocking', '6.6.0'
+  pod 'RxTest', '6.6.0'
+  
+#  nimble + quick
   
 end
 
