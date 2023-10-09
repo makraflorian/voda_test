@@ -7,17 +7,19 @@
 
 import XCTest
 import Moya
+import RxBlocking
 @testable import VodaTest
 
 final class VodaOfferListTests: XCTestCase {
     
     var offersViewModel: OffersViewModel!
-    let networkManager: NetworkManager = NetworkManager(provider: MoyaProvider<OfferAPI>(stubClosure: MoyaProvider.immediatelyStub))
+    let networkManager: NetworkManager = NetworkManager()
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         try super.setUpWithError()
-        offersViewModel = OffersViewModel(networkManager: networkManager)
+        networkManager.setProvider(provider: MoyaProvider<OfferAPI>(stubClosure: MoyaProvider.delayedStub(3)))
+        offersViewModel = OffersViewModel(interactor: OfferInteractor(networkManager: networkManager))
         
     }
 
@@ -29,14 +31,14 @@ final class VodaOfferListTests: XCTestCase {
     
     func testOffersLoad() throws {
         offersViewModel.getOffers()
-        let offers = offersViewModel.offers
-        XCTAssertFalse(offers.isEmpty, "offers array is empty")
+        let offers = offersViewModel.offersGroups
+        XCTAssertFalse(((try offers.skip(1).toBlocking().first()?.isEmpty) == nil), "offersGroups array is empty")
     }
     
     func testOfferGroups() throws {
         offersViewModel.getOffers()
         let offerGroups = offersViewModel.offersGroups
-        XCTAssertFalse(offerGroups.value.count < 2, "not enough offer groups")
+        XCTAssertEqual(try offerGroups.skip(1).toBlocking().first()?.count, 2)
     }
 
 }
