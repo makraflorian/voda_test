@@ -11,8 +11,8 @@ import RxCocoa
 
 protocol OfferInteractorType {
     
-    func getOffers() -> Single<[OfferTypeModel]>
-    func getOfferDetails() -> Single<OfferDetailModel>
+    func getOffers() -> Observable<[OfferTypeModel]>
+    func getOfferDetails() -> Observable<OfferDetailModel>
 }
 
 class OfferInteractor: OfferInteractorType {
@@ -23,7 +23,7 @@ class OfferInteractor: OfferInteractorType {
         self.networkManager = networkManager
     }
     
-    func getOffers() -> Single<[OfferTypeModel]> {
+    func getOffers() -> Observable<[OfferTypeModel]> {
         networkManager.handleRequests(api: .getOffers)
             .map([OfferModel].self)
             .map { offerArray in
@@ -35,21 +35,21 @@ class OfferInteractor: OfferInteractorType {
                 var special = offers.filter { $0.isSpecial! }
                 if !special.isEmpty {
                     special = special.sorted { $0.rank! < $1.rank! }
-                    temp.append(OfferTypeModel(name: "Special Offers", offers: special))
+                    temp.append(OfferTypeModel(name: "Special Offers", items: special))
                 }
                 if !normal.isEmpty {
                     normal = normal.sorted { $0.rank! < $1.rank! }
-                    temp.append(OfferTypeModel(name: "Offers", offers: normal))
+                    temp.append(OfferTypeModel(name: "Offers", items: normal))
                 }
                 return temp
-            }
+            }.asObservable()
     }
     
-    func getOfferDetails() -> Single<OfferDetailModel> {
+    func getOfferDetails() -> Observable<OfferDetailModel> {
         networkManager.handleRequests(api: .getOfferDetails(id: ""))
             .map(OfferDetailModel.self)
             .map { offer in
                 return offer
-            }
+            }.asObservable()
     }
 }

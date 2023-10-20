@@ -11,35 +11,45 @@ import RxSwift
 import RxCocoa
 
 protocol OffersViewModelType {
-    var offersGroups: BehaviorRelay<[OfferTypeModel]> { get }
-    var showAlert: BehaviorRelay<Bool> { get }
+    var offersGroups: Observable<[OfferTypeModel]>! { get }
+    var showAlert: PublishSubject<Bool> { get }
     
-    func getOffers()
+//    func getOffers()
     
 }
 
 class OffersViewModel: OffersViewModelType {
     
-    var offersGroups: BehaviorRelay<[OfferTypeModel]> = BehaviorRelay<[OfferTypeModel]>(value: [])
-    var showAlert: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    var offersGroups: Observable<[OfferTypeModel]>!
+    var showAlert: PublishSubject<Bool> = PublishSubject()
     
     let disposeBag = DisposeBag()
     var interactor: OfferInteractorType
     
     init(interactor: OfferInteractorType) {
         self.interactor = interactor
+        
+        self.offersGroups = interactor.getOffers()
+            .catch { error in
+                self.showAlert.onNext(true)
+                return Observable.just([])
+            }
+        
+//        self.showAlert = interactor.getOffers()
+//            .map { _ in false }
+//            .catchAndReturn(true)
     }
     
-    func getOffers() {
-        
-        interactor.getOffers().subscribe { event in
-            switch event {
-            case .success(let data):
-                self.offersGroups.accept(data)
-            case .failure(let error):
-                print("Error: \(error.localizedDescription )")
-                self.showAlert.accept(true)
-            }
-        }.disposed(by: disposeBag)
-    }
+//    func getOffers() {
+//
+//        interactor.getOffers().subscribe { event in
+//            switch event {
+//            case .success(let data):
+//                self.offersGroups.accept(data)
+//            case .failure(let error):
+//                print("Error: \(error.localizedDescription )")
+//                self.showAlert.accept(true)
+//            }
+//        }.disposed(by: disposeBag)
+//    }
 }

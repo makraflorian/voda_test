@@ -37,7 +37,7 @@ class OfferDetailViewController: UIViewController {
             }
         }.disposed(by: disposeBag)
         
-        viewModel?.getOfferDetail()
+//        viewModel?.getOfferDetail()
         
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
@@ -52,7 +52,10 @@ class OfferDetailViewController: UIViewController {
     }
     
     @objc func refresh(_ sender: AnyObject) {
-        viewModel?.getOfferDetail()
+//        viewModel?.getOfferDetail()
+//        refreshControl.rx.controlEvent(.valueChanged).flatMapLatest {
+//            
+//        }
         refreshControl.endRefreshing()
     }
 }

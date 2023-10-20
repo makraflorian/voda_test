@@ -6,13 +6,23 @@
 //
 
 import Foundation
+import RxDataSources
 
-class OfferTypeModel: Codable {
+struct OfferTypeModel: Codable {
     var name: String
-    var offers: [OfferModel] = []
+    var items: [OfferModel] = []
     
-    init(name: String, offers: [OfferModel]?) {
+    init(name: String, items: [OfferModel]?) {
         self.name = name
-        self.offers = offers ?? []
+        self.items = items ?? []
     }
+}
+
+extension OfferTypeModel: SectionModelType {
+  typealias Item = OfferModel
+
+   init(original: OfferTypeModel, items: [Item]) {
+    self = original
+    self.items = items
+  }
 }
