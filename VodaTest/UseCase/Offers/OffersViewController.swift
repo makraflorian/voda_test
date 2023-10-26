@@ -11,86 +11,66 @@ import RxCocoa
 import RxDataSources
 
 class OffersViewController: UIViewController, UITableViewDelegate {
+    
     @IBOutlet weak var tableView: UITableView!
     
     let refreshControl = UIRefreshControl()
+    var pullToRefresh: UIRefreshControl = .init()
     let disposeBag = DisposeBag()
     
     var viewModel: OffersViewModelType?
     
-//    var dataSource = RxTableViewSectionedReloadDataSource<SectionModel>?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = "My Offers"
         tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0);
+        pullToRefresh.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        tableView.refreshControl = pullToRefresh
+        
+        configurePullToRefresh()
         
         let dataSource = RxTableViewSectionedReloadDataSource<OfferTypeModel>(
-          configureCell: { dataSource, tableView, indexPath, item in
-              let cell = tableView.dequeueReusableCell(withIdentifier: "OFFER_CELL_ID", for: indexPath) as! OfferCell
-              cell.titleLabel?.text = item.name
-              cell.descriptionLabel?.text = item.shortDescription
-            return cell
-        })
+            configureCell: { dataSource, tableView, indexPath, item in
+                let cell = tableView.dequeueReusableCell(withIdentifier: "OFFER_CELL_ID", for: indexPath) as! OfferCell
+                cell.titleLabel?.text = item.name
+                cell.descriptionLabel?.text = item.shortDescription
+                return cell
+            })
         
         dataSource.titleForHeaderInSection = { dataSource, index in
             return dataSource.sectionModels[index].name
         }
-
+        
         viewModel?.offersGroups.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
         
-            viewModel?.showAlert.subscribe {
-                if $0 {
-                    let alert = UIAlertController(title: "Error", message: "Unable to fetch data", preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }
+        viewModel?.showAlert.subscribe {
+            if $0 {
+                let alert = UIAlertController(title: "Error", message: "Unable to fetch data", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }.disposed(by: disposeBag)
+        
+        viewModel?.refreshRelay.refresh(true)
+    }
+    
+    func configurePullToRefresh() {
+        pullToRefresh.rx
+            .controlEvent(.valueChanged)
+            .subscribe { [weak self] event in
+                guard let self = self, case .next = event else { return }
+                self.viewModel?.refreshRelay.refresh(false)
             }.disposed(by: disposeBag)
         
-        
-//        viewModel?.showAlert
-        
-//        Observable.just(viewModel?.offersGroups)
-//          .bind(to: tableView.rx.items(dataSource: dataSource))
-//          .disposed(by: disposeBag)
-        
-        
-//        viewModel?.offersGroups.bind(to: tableView.rx.items(cellIdentifier: "OFFER_CELL_ID",
-//                                                            cellType: OfferCell.self)) { (_, offer, cell: OfferCell) in
-//            cell.titleLabel?.text = offer.name
-//            }
-//                                                         .disposed(by: disposeBag)
-//        viewModel?.offersGroups.subscribe { _ in
-//            self.tableView.reloadData()
-//        }.disposed(by: disposeBag)
-//
-        
-//        viewModel?.getOffers()
-        
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-        tableView.addSubview(refreshControl)
+        viewModel?.offersGroups
+            .subscribe { [weak self] event in
+                print(event)
+                guard let self = self else { return }
+                self.pullToRefresh.endRefreshing()
+            }.disposed(by: disposeBag)
     }
     
-    @objc func refresh(_ sender: AnyObject) {
-//        viewModel?.getOffers()
-        refreshControl.endRefreshing()
-    }
-    
-    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel?.offersGroups.value[section].offers.count ?? 0
-//    }
-//
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return viewModel?.offersGroups.value.count ?? 0
-//    }
-//
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return viewModel?.offersGroups.value[section].name
-//    }
-//
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.textColor = UIColor.black
@@ -98,27 +78,15 @@ class OffersViewController: UIViewController, UITableViewDelegate {
         header.textLabel?.text =  header.textLabel?.text?.capitalized
         header.textLabel?.frame = header.bounds
     }
-
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 48
     }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "OFFER_CELL_ID", for: indexPath) as! OfferCell
-//        let offer = viewModel?.offersGroups.value[indexPath.section].offers[indexPath.row]
-//        cell.titleLabel.text = offer?.name
-//        cell.descriptionLabel.text = offer?.shortDescription
-//
-//        return cell
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
         navigationItem.backBarButtonItem = backItem
-        //        let destination = segue.destination as! OfferDetailViewController
-        //        let offerIndex = tableView.indexPathForSelectedRow?.row
-        //        destination.viewModel?.offerId = viewModel?.offers[offerIndex!].id
     }
 }
 

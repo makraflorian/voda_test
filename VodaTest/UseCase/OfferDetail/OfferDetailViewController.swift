@@ -16,6 +16,7 @@ class OfferDetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     
     let refreshControl = UIRefreshControl()
+    var pullToRefresh: UIRefreshControl = .init()
     let disposeBag = DisposeBag()
     
     var viewModel: OfferDetailViewModelType?
@@ -25,23 +26,16 @@ class OfferDetailViewController: UIViewController {
         scrollView.isScrollEnabled = true
         scrollView.alwaysBounceVertical = true
         
-        viewModel?.itemViewModel.subscribe {
-            self.setupLabels(item: $0)
+        configurePullToRefresh()
+        
+        viewModel?.itemViewModel.subscribe { [weak self] item in
+            guard let self = self else { return }
+            self.setupLabels(item: item)
         }.disposed(by: disposeBag)
         
-        viewModel?.showAlert.subscribe {
-            if $0 {
-                let alert = UIAlertController(title: "Error", message: "Unable to fetch data", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
-        }.disposed(by: disposeBag)
-        
-//        viewModel?.getOfferDetail()
-        
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-        scrollView.addSubview(refreshControl)
+        pullToRefresh.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        scrollView.refreshControl = pullToRefresh
+        viewModel?.refreshRelay.refresh(true)
     }
     
     func setupLabels(item: OfferDetailItemViewModel) {
@@ -49,13 +43,27 @@ class OfferDetailViewController: UIViewController {
         nameLabel.text = item.name
         shortDescriptionLabel.text = item.shortDescription
         descriptionLabel.text = item.description
+        
+        if item.errorState! {
+            let alert = UIAlertController(title: "Error", message: "Unable to fetch data", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
-    @objc func refresh(_ sender: AnyObject) {
-//        viewModel?.getOfferDetail()
-//        refreshControl.rx.controlEvent(.valueChanged).flatMapLatest {
-//            
-//        }
-        refreshControl.endRefreshing()
+    func configurePullToRefresh() {
+        pullToRefresh.rx
+            .controlEvent(.valueChanged)
+            .subscribe { [weak self] event in
+                guard let self = self, case .next = event else { return }
+                self.viewModel?.refreshRelay.refresh(false)
+            }.disposed(by: disposeBag)
+        
+        viewModel?.itemViewModel
+            .subscribe { [weak self] event in
+                print(event)
+                guard let self = self else { return }
+                self.pullToRefresh.endRefreshing()
+            }.disposed(by: disposeBag)
     }
 }

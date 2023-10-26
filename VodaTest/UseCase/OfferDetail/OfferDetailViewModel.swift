@@ -16,12 +16,22 @@ struct OfferDetailItemViewModel {
     var name: String?
     var shortDescription: String?
     var description: String?
+    var errorState: Bool?
     
     init(offer: OfferDetailModel) {
         id = offer.id
         name = offer.name
         shortDescription = offer.shortDescription
         description = offer.description
+        errorState = false
+    }
+    
+    init(hasError: Bool) {
+        id = ""
+        name = ""
+        shortDescription = ""
+        description = ""
+        errorState = hasError
     }
     
     init() {
@@ -29,54 +39,32 @@ struct OfferDetailItemViewModel {
         name = ""
         shortDescription = ""
         description = ""
+        errorState = false
     }
 }
 
 protocol OfferDetailViewModelType {
     var itemViewModel: Observable<OfferDetailItemViewModel>! { get }
-    var showAlert: PublishSubject<Bool> { get }
-//    var offerId: String? { get set }
-    
-//    func getOfferDetail()
+    var refreshRelay: RefreshRelay { get }
 }
 
 class OfferDetailViewModel: OfferDetailViewModelType {
     
-    
     var itemViewModel: Observable<OfferDetailItemViewModel>!
-    var showAlert: PublishSubject<Bool> = PublishSubject()
-    
-//    var offerId: String?
+    var refreshRelay: RefreshRelay
     let disposeBag = DisposeBag()
     var interactor: OfferInteractorType
     
     init(interactor: OfferInteractorType) {
         self.interactor = interactor
-        
-        self.itemViewModel = interactor.getOfferDetails().map {
-            OfferDetailItemViewModel(offer: $0)
-        }
-        .catch { error in
-            self.showAlert.onNext(true)
-            return Observable.just(OfferDetailItemViewModel())
-        }
-        
-//        self.showAlert = interactor.getOfferDetails().asObservable()
-//            .map { _ in false }
-//            .catchAndReturn(true)
+        self.refreshRelay = RefreshRelay()
+        self.itemViewModel = interactor.getOfferDetails(refreshRelay: refreshRelay).map { offerDetailResult in
+            switch offerDetailResult {
+            case .success(let offer):
+                return OfferDetailItemViewModel(offer: offer)
+            case .failure:
+                return OfferDetailItemViewModel(hasError: true)
+            }
+        }.asObservable()
     }
-    
-    
-//    func getOfferDetail() {
-//        interactor.getOfferDetails().subscribe { event in
-//            switch event {
-//            case .success(let data):
-//                self.itemViewModel.accept(OfferDetailItemViewModel(offer: data))
-//            case .failure(let error):
-//                print("Error: \(error.localizedDescription )")
-//                self.showAlert.accept(true)
-//            }
-//        }.disposed(by: disposeBag)
-//
-//    }
 }

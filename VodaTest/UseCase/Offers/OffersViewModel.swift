@@ -11,45 +11,48 @@ import RxSwift
 import RxCocoa
 
 protocol OffersViewModelType {
-    var offersGroups: Observable<[OfferTypeModel]>! { get }
+    var offersGroups: Observable<[OfferTypeModel]> { get }
     var showAlert: PublishSubject<Bool> { get }
-    
-//    func getOffers()
-    
+    var screenRefreshRelays: [RefreshRelay] { get }
+    var refreshRelay: RefreshRelay { get }
 }
 
 class OffersViewModel: OffersViewModelType {
     
-    var offersGroups: Observable<[OfferTypeModel]>!
+    var offersGroups: Observable<[OfferTypeModel]>
     var showAlert: PublishSubject<Bool> = PublishSubject()
-    
+    var screenRefreshRelays: [RefreshRelay]
     let disposeBag = DisposeBag()
     var interactor: OfferInteractorType
+    var refreshRelay: RefreshRelay
     
     init(interactor: OfferInteractorType) {
         self.interactor = interactor
-        
-        self.offersGroups = interactor.getOffers()
-            .catch { error in
-                self.showAlert.onNext(true)
-                return Observable.just([])
-            }
-        
-//        self.showAlert = interactor.getOffers()
-//            .map { _ in false }
-//            .catchAndReturn(true)
+        self.refreshRelay = RefreshRelay()
+        screenRefreshRelays = [refreshRelay]
+        self.offersGroups = interactor.getOffers(refreshRelay: refreshRelay)
+            .map { offerResult in
+                switch offerResult {
+                case .success(let offerArray):
+                    let offers = offerArray.filter { $0.id != nil && $0.rank != nil }
+                    
+                    var temp: [OfferTypeModel] = []
+                    
+                    var normal = offers.filter { !$0.isSpecial! }
+                    var special = offers.filter { $0.isSpecial! }
+                    if !special.isEmpty {
+                        special = special.sorted { $0.rank! < $1.rank! }
+                        temp.append(OfferTypeModel(name: "Special Offers", items: special))
+                    }
+                    if !normal.isEmpty {
+                        normal = normal.sorted { $0.rank! < $1.rank! }
+                        temp.append(OfferTypeModel(name: "Offers", items: normal))
+                    }
+                    return temp
+                case .failure:
+                    return []
+                }
+                
+            }.asObservable()
     }
-    
-//    func getOffers() {
-//
-//        interactor.getOffers().subscribe { event in
-//            switch event {
-//            case .success(let data):
-//                self.offersGroups.accept(data)
-//            case .failure(let error):
-//                print("Error: \(error.localizedDescription )")
-//                self.showAlert.accept(true)
-//            }
-//        }.disposed(by: disposeBag)
-//    }
 }

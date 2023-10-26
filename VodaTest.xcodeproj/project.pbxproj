@@ -17,6 +17,8 @@
 		D72E0A5E2A979AF5004FC9B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D72E0A5C2A979AF5004FC9B2 /* LaunchScreen.storyboard */; };
 		D72E0A732A97B0DF004FC9B2 /* OfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72E0A712A97B0DF004FC9B2 /* OfferCell.swift */; };
 		D73EE3BB2AA614E3004B30B1 /* VodaOfferListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73EE3BA2AA614E3004B30B1 /* VodaOfferListTests.swift */; };
+		D7512F822AE7FC0C00F4C7A3 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7512F812AE7FC0C00F4C7A3 /* NetworkResult.swift */; };
+		D7512F842AE80CCF00F4C7A3 /* RefreshRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7512F832AE80CCF00F4C7A3 /* RefreshRelay.swift */; };
 		D7635C7A2AC1BB06004C9D0F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7635C792AC1BB06004C9D0F /* NetworkManager.swift */; };
 		D7635C7C2AC1C4D2004C9D0F /* CommonAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7635C7B2AC1C4D2004C9D0F /* CommonAssembly.swift */; };
 		D7974ABC2AA09B1F0033C61E /* OfferAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7974ABB2AA09B1F0033C61E /* OfferAPI.swift */; };
@@ -61,6 +63,8 @@
 		D72E0A712A97B0DF004FC9B2 /* OfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCell.swift; sourceTree = "<group>"; };
 		D73EE3B82AA614E3004B30B1 /* VodaTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VodaTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D73EE3BA2AA614E3004B30B1 /* VodaOfferListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VodaOfferListTests.swift; sourceTree = "<group>"; };
+		D7512F812AE7FC0C00F4C7A3 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		D7512F832AE80CCF00F4C7A3 /* RefreshRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshRelay.swift; sourceTree = "<group>"; };
 		D7635C792AC1BB06004C9D0F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D7635C7B2AC1C4D2004C9D0F /* CommonAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonAssembly.swift; sourceTree = "<group>"; };
 		D7974ABB2AA09B1F0033C61E /* OfferAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferAPI.swift; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 		D710EDD02ACDADDB00E003EB /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
+				D7512F802AE7FBF300F4C7A3 /* InteractorUtils */,
 				D710EDD12ACDB7F100E003EB /* OfferInteractor.swift */,
 			);
 			path = Interactors;
@@ -205,6 +210,15 @@
 				D7A4BFFF2AA7713D005C0642 /* VodaOfferDetailTests.swift */,
 			);
 			path = VodaTestTests;
+			sourceTree = "<group>";
+		};
+		D7512F802AE7FBF300F4C7A3 /* InteractorUtils */ = {
+			isa = PBXGroup;
+			children = (
+				D7512F832AE80CCF00F4C7A3 /* RefreshRelay.swift */,
+				D7512F812AE7FC0C00F4C7A3 /* NetworkResult.swift */,
+			);
+			path = InteractorUtils;
 			sourceTree = "<group>";
 		};
 		D7635C7D2AC30A2E004C9D0F /* API */ = {
@@ -440,6 +454,7 @@
 				D72E0A732A97B0DF004FC9B2 /* OfferCell.swift in Sources */,
 				D7D324CD2ABC64D8008BB3E9 /* OfferDetailAssembly.swift in Sources */,
 				D72E0A562A979AF3004FC9B2 /* OffersViewController.swift in Sources */,
+				D7512F842AE80CCF00F4C7A3 /* RefreshRelay.swift in Sources */,
 				D710EDD22ACDB7F100E003EB /* OfferInteractor.swift in Sources */,
 				D7974ABC2AA09B1F0033C61E /* OfferAPI.swift in Sources */,
 				D79D2EF22A98E0CD0023DC3D /* OfferModel.swift in Sources */,
@@ -452,6 +467,7 @@
 				D7635C7C2AC1C4D2004C9D0F /* CommonAssembly.swift in Sources */,
 				D7635C7A2AC1BB06004C9D0F /* NetworkManager.swift in Sources */,
 				D7D324CF2ABC84C9008BB3E9 /* OfferTypeModel.swift in Sources */,
+				D7512F822AE7FC0C00F4C7A3 /* NetworkResult.swift in Sources */,
 				D79D2EF42A98E39E0023DC3D /* OfferDetailModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
