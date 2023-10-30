@@ -31,5 +31,4 @@ class NetworkManager: NetworkManagerType {
         return provider.rx.request(api)
             .filterSuccessfulStatusAndRedirectCodes()
     }
-    
 }

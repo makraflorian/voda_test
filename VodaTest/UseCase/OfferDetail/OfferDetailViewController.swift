@@ -45,7 +45,8 @@ class OfferDetailViewController: UIViewController {
         descriptionLabel.text = item.description
         
         if item.errorState! {
-            let alert = UIAlertController(title: "Error", message: "Unable to fetch data", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: "Error", message: "Unable to fetch data", 
+                                          preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }

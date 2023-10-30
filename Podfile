@@ -16,6 +16,7 @@ target 'VodaTest' do
   pod 'RxSwift', '6.6.0'
   pod 'RxCocoa', '6.6.0'
   pod 'RxDataSources', '~> 5.0'
+  pod 'SwiftLint'
 
 end
 

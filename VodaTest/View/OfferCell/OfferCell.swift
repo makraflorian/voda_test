@@ -17,16 +17,9 @@ class OfferCell: UITableViewCell {
         self.selectedBackgroundView = UIView()
         roundedView.layer.cornerRadius = 10
         
-        roundedView.layer.shadowOffset = CGSizeMake(0, 4)
+        roundedView.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
         roundedView.layer.shadowColor = UIColor.black.cgColor
         roundedView.layer.shadowOpacity = 0.25
         roundedView.layer.shadowRadius = 4
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

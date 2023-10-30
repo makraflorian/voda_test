@@ -25,10 +25,11 @@ class NetworkResult<T>: ObservableType where T: Codable {
             }
     }
     
-    public func subscribe<Observer>(_ observer: Observer) -> Disposable where Observer: ObserverType,
-                                                                              Result<T, Error> == Observer.Element {
-                                                                                  return networkResult.subscribe(observer)
-                                                                              }
+    public func subscribe<Observer>(_ observer: Observer) -> Disposable where
+        Observer: ObserverType, Result<T, Error> == Observer.Element {
+            return networkResult.subscribe(observer)
+            
+        }
     
     public typealias Element = Result<T, Error>
     
