@@ -26,12 +26,12 @@ struct OfferDetailItemViewModel {
         errorState = false
     }
     
-    init(hasError: Bool) {
+    init(withError: Bool) {
         id = ""
         name = ""
         shortDescription = ""
         description = ""
-        errorState = hasError
+        errorState = withError
     }
     
     init() {
@@ -63,7 +63,7 @@ class OfferDetailViewModel: OfferDetailViewModelType {
             case .success(let offer):
                 return OfferDetailItemViewModel(offer: offer)
             case .failure:
-                return OfferDetailItemViewModel(hasError: true)
+                return OfferDetailItemViewModel(withError: true)
             }
         }.asObservable()
     }

@@ -44,8 +44,8 @@ class OffersViewController: UIViewController, UITableViewDelegate {
         
         viewModel?.offersGroups.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
         
-        viewModel?.showAlert.subscribe {
-            if $0 {
+        viewModel?.offersGroups.subscribe {
+            if $0[0].errorState {
                 let alert = UIAlertController(title: "Error", message: "Unable to fetch data", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)

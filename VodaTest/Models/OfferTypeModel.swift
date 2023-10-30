@@ -11,10 +11,18 @@ import RxDataSources
 struct OfferTypeModel: Codable {
     var name: String
     var items: [OfferModel] = []
+    var errorState: Bool
     
     init(name: String, items: [OfferModel]?) {
         self.name = name
         self.items = items ?? []
+        self.errorState = false
+    }
+    
+    init(withError: Bool) {
+        self.name = ""
+        self.items = []
+        self.errorState = true
     }
 }
 

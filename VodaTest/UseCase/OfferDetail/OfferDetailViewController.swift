@@ -25,6 +25,8 @@ class OfferDetailViewController: UIViewController {
         super.viewDidLoad()
         scrollView.isScrollEnabled = true
         scrollView.alwaysBounceVertical = true
+        pullToRefresh.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        scrollView.refreshControl = pullToRefresh
         
         configurePullToRefresh()
         
@@ -33,8 +35,6 @@ class OfferDetailViewController: UIViewController {
             self.setupLabels(item: item)
         }.disposed(by: disposeBag)
         
-        pullToRefresh.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        scrollView.refreshControl = pullToRefresh
         viewModel?.refreshRelay.refresh(true)
     }
     

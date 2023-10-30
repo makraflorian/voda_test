@@ -50,7 +50,7 @@ class OffersViewModel: OffersViewModelType {
                     }
                     return temp
                 case .failure:
-                    return []
+                    return [OfferTypeModel(withError: true)]
                 }
                 
             }.asObservable()
