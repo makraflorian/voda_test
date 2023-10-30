@@ -13,7 +13,6 @@ import RxCocoa
 protocol OffersViewModelType {
     var offersGroups: Observable<[OfferTypeModel]> { get }
     var showAlert: PublishSubject<Bool> { get }
-    var screenRefreshRelays: [RefreshRelay] { get }
     var refreshRelay: RefreshRelay { get }
 }
 
@@ -21,7 +20,6 @@ class OffersViewModel: OffersViewModelType {
     
     var offersGroups: Observable<[OfferTypeModel]>
     var showAlert: PublishSubject<Bool> = PublishSubject()
-    var screenRefreshRelays: [RefreshRelay]
     let disposeBag = DisposeBag()
     var interactor: OfferInteractorType
     var refreshRelay: RefreshRelay
@@ -29,7 +27,6 @@ class OffersViewModel: OffersViewModelType {
     init(interactor: OfferInteractorType) {
         self.interactor = interactor
         self.refreshRelay = RefreshRelay()
-        screenRefreshRelays = [refreshRelay]
         self.offersGroups = interactor.getOffers(refreshRelay: refreshRelay)
             .map { offerResult in
                 switch offerResult {
@@ -52,7 +49,6 @@ class OffersViewModel: OffersViewModelType {
                 case .failure:
                     return [OfferTypeModel(withError: true)]
                 }
-                
             }.asObservable()
     }
 }

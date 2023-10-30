@@ -35,7 +35,7 @@ class OfferInteractor: OfferInteractorType {
     }
     
     func getOfferDetails(refreshRelay: RefreshRelay) -> NetworkResult<OfferDetailModel> {
-        let result = networkManager.handleRequests(api: .getOfferDetails(id: "")).map(OfferDetailModel.self).map {
+        let result = networkManager.handleRequests(api: .getOfferDetails).map(OfferDetailModel.self).map {
             Result<OfferDetailModel, Error>.success($0)
         }.asObservable()
             .catch { error in

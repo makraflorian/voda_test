@@ -10,7 +10,7 @@ import Moya
 
 enum OfferAPI {
     case getOffers
-    case getOfferDetails(id: String)
+    case getOfferDetails
 }
 
 // MARK: - TargetType Protocol Implementation
